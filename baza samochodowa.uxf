@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>_object: Class_
+--
+id: Long="36548"
+[waiting for message]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>750</x>
+      <y>40</y>
+      <w>180</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>tabela wersji
+--
+id_wersji: int, primary key
+id_modelu: int &gt; unique1
+id_koloru: int &gt; unique1
+id_silnika: int &gt; unique1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>470</x>
+      <y>230</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>tabela silników
+--
+id_silnika: int, primary key
+tworca: string &gt; unique1
+model: string &gt; unique1
+moc: int 
+pojemnosc: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>470</x>
+      <y>30</y>
+      <w>210</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>tabela modeli
+--
+id_modelu, int primary key
+nazwa_marki, string &gt; unique1
+nazwa_modelu, string &gt; unique1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>470</x>
+      <y>130</y>
+      <w>210</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>tabela kolorów
+--
+id_koloru: int, primary key
+kolor: string, unique</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>750</x>
+      <y>160</y>
+      <w>180</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>tabela dostępności
+--
+id: int, primary key
+id_wersji: int &gt; unique1
+id_placówki: int &gt; unique1
+count: int &gt;=0
+cena: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>750</x>
+      <y>290</y>
+      <w>180</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>tabela placówek
+--
+id_placówki: int, primary key
+nazwa: string &gt; unique1
+adres: string &gt; unique1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>650</x>
+      <y>30</y>
+      <w>120</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;100;60</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>650</x>
+      <y>80</y>
+      <w>120</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;80;100;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>650</x>
+      <y>90</y>
+      <w>120</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;170;100;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>900</x>
+      <y>40</y>
+      <w>90</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>30;30;70;60;70;150;30;170</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>900</x>
+      <y>200</y>
+      <w>80</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>30;120;60;100;60;60;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1270</x>
+      <y>40</y>
+      <w>180</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>tabela userów
+--
+id_user: int primary key
+typ: int, in (1,2)
+imie: string
+nazwisko: string
+login: string unique
+haslo: string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1090</x>
+      <y>40</y>
+      <w>130</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>historia zakupów
+--
+id: int primary key
+id_user: int
+id_wersji: int
+data: date
+cena: int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1190</x>
+      <y>40</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80;30;30;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>900</x>
+      <y>40</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;190;70</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>570</x>
+      <y>400</y>
+      <w>360</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>PLACÓWKA AKCJE
+--
+dodaj samochód do oferty
+(marka, model, kolor, silnik, cena, count)
+* wyciagnij id_modelu
+* wyciagnij id_koloru
+* wyciagnij id_silniku
+* wyciagnij id_wersji(id_modelu, id_koloru, id_silnika)
+* dodaj do tabeli dostępności
+	(id_wersji, id_placówki, count, cena)
+--
+usuń samochód
+--
+przenieś samochód do innej
+--
+sprzedaj samochód userowi</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1020</x>
+      <y>340</y>
+      <w>300</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>USER AKCJE
+--
+wyszukaj daną konfigurację
+--
+zobacz historię zakupów dla siebie
+--
+kup samochód
+--
+wylistuj placówki
+--
+wylistuj wszystko dostępne w danej placówce</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
