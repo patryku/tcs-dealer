@@ -3,9 +3,9 @@ BEGIN;
 CREATE TABLE silniki (
 	id_silnika serial PRIMARY KEY,
 	typ varchar(20) NOT NULL,
-	pojemnosc int NOT NULL,
-	moc int NOT NULL,
-	moment int NOT NULL,
+	pojemnosc int NOT NULL CHECK (pojemnosc > 0),
+	moc int NOT NULL CHECK (moc > 0),
+	moment int NOT NULL CHECK (moment > 0),
 	unique (typ, pojemnosc, moc, moment)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE placowki (
 CREATE TABLE nadwozia (
 	id_nadwozia serial primary key,
 	typ varchar(20) not null,
-	liczba_drzwi int NOT NULL,
+	liczba_drzwi int NOT NULL CHECK (liczba_drzwi > 0),
 	unique (typ, liczba_drzwi)
 );
 
@@ -29,8 +29,8 @@ CREATE TABLE modele (
 	producent varchar(20) not null,
 	nazwa varchar(20) not null,
 	produkowany_od date NOT NULL,
-	produkowany_do date,
-	gwarancja int NOT NULL,
+	produkowany_do date CHECK (produkowany_od < produkowany_do),
+	gwarancja int NOT NULL CHECK (gwarancja >= 0),
 	unique (producent, nazwa)
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE wersje (
 	id_silnika int NOT NULL REFERENCES silniki (id_silnika),
 	id_nadwozia int NOT NULL REFERENCES nadwozia (id_nadwozia),
 	id_lakieru int NOT NULL REFERENCES lakiery (id_lakieru),
-	cena numeric NOT NULL,
+	cena numeric NOT NULL CHECK (cena >= 0),
 	nazwa_wersji varchar(20),
 	UNIQUE (id_modelu, id_silnika, id_nadwozia, id_lakieru)
 );
@@ -127,7 +127,7 @@ CREATE TABLE auta_klientow (
 	rok_produkcji date NOT NULL,
 	wersja int NOT NULL REFERENCES wersje (id_wersji),
 	data_zakupu date NOT NULL,
-	cena_zakupu numeric NOT NULL,
+	cena_zakupu numeric NOT NULL CHECK (cena_zakupu >= 0),
 	placowka int NOT NULL REFERENCES placowki (id_placowki),
 	klient int NOT NULL REFERENCES klienci (id_klienta),
 	id_konfig int NOT NULL,
@@ -140,7 +140,7 @@ CREATE TABLE naprawy (
 	vin char(17) NOT NULL REFERENCES auta_klientow,
 	placowka int NOT NULL REFERENCES placowki (id_placowki),
 	data date NOT NULL,
-	koszt numeric NOT NULL,
+	koszt numeric NOT NULL CHECK (koszt >= 0),
 	opis varchar(200) NOT NULL
 );
 
