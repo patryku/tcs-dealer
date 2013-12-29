@@ -1,3 +1,5 @@
+BEGIN;
+
 CREATE TABLE silniki (
 	id_silnika serial PRIMARY KEY,
 	typ varchar(20) NOT NULL,
@@ -125,6 +127,7 @@ CREATE TABLE auta_klientow (
 	rok_produkcji date NOT NULL,
 	wersja int NOT NULL REFERENCES wersje (id_wersji),
 	data_zakupu date NOT NULL,
+	cena_zakupu numeric NOT NULL,
 	placowka int NOT NULL REFERENCES placowki (id_placowki),
 	klient int NOT NULL REFERENCES klienci (id_klienta),
 	id_konfig int NOT NULL,
@@ -141,3 +144,4 @@ CREATE TABLE naprawy (
 	opis varchar(200) NOT NULL
 );
 
+COMMIT;
