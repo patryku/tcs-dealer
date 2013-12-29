@@ -41,7 +41,7 @@ CREATE TABLE wersje (
 );
 
 CREATE TABLE wyposazenia (
-	id_wypos numeric,
+	id_konfig numeric,
 	model varchar(20) NOT NULL REFERENCES modele (nazwa),
 	abs numeric,
 	esp numeric,
@@ -60,11 +60,11 @@ CREATE TABLE wyposazenia (
 	el_szyby numeric,
 	el_lusterka numeric,
 	cz_parkowania numeric,
-	PRIMARY KEY (id_wypos, model)
+	PRIMARY KEY (id_konfig, model)
 );
 
 CREATE TABLE konfiguracje (
-	id_wypos numeric,
+	id_konfig numeric,
 	abs boolean,
 	esp boolean,
 	klimatyzacja_man boolean,
@@ -83,7 +83,7 @@ CREATE TABLE konfiguracje (
 	el_lusterka boolean,
 	cz_parkowania boolean,
 	id_koloru int NOT NULL REFERENCES kolory,
-	PRIMARY KEY (id_wypos, id_koloru)
+	PRIMARY KEY (id_konfig, id_koloru)
 );
 
 CREATE TABLE auta_na_sprzedaz (
@@ -91,9 +91,9 @@ CREATE TABLE auta_na_sprzedaz (
 	rok_produkcji date NOT NULL,
 	wersja numeric NOT NULL REFERENCES wersje (id_wersji),
 	placowka int NOT NULL REFERENCES placowki (id_placowki)
-	id_wypos numeric NOT NULL,
+	id_konfig numeric NOT NULL,
 	id_koloru int NOT NULL,
-	FOREIGN KEY (id_wypos, id_koloru) REFERENCES konfiguracje (id_wypos, id_koloru)
+	FOREIGN KEY (id_konfig, id_koloru) REFERENCES konfiguracje (id_konfig, id_koloru)
 );
 
 CREATE TABLE klienci (
@@ -111,7 +111,10 @@ CREATE TABLE auta_klientow (
 	wersja numeric NOT NULL REFERENCES wersje (id_wersji),
 	data_zakupu date NOT NULL,
 	placowka int NOT NULL REFERENCES placowki (id_placowki),
-	klient int NOT NULL REFERENCES klienci (id_klienta)
+	klient int NOT NULL REFERENCES klienci (id_klienta),
+	id_konfig numeric NOT NULL,
+	id_koloru int NOT NULL,
+	FOREIGN KEY (id_konfig, id_koloru) REFERENCES konfiguracje (id_konfig, id_koloru)
 );
 
 CREATE TABLE naprawy (
