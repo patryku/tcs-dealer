@@ -1,48 +1,63 @@
 CREATE TABLE silniki (
-	id_silnika int PRIMARY KEY,
-	typ char(1) NOT NULL,
+	id_silnika serial PRIMARY KEY,
+	typ varchar(20) NOT NULL,
 	pojemnosc int NOT NULL,
 	moc int NOT NULL,
-	moment int NOT NULL
+	moment int NOT NULL,
+	unique (typ, pojemnosc, moc, moment)
+);
+
+CREATE TABLE placowki (
+	id_placowki serial PRIMARY KEY,
+	nazwa varchar(30) NOT NULL,
+	adres varchar(100) NOT NULL,
+	telefon varchar(20),
+	mail varchar(50)
 );
 
 CREATE TABLE nadwozia (
-	typ varchar(20) PRIMARY KEY,
-	liczba_drzwi int NOT NULL
+	id_nadwozia serial primary key,
+	typ varchar(20) not null,
+	liczba_drzwi int NOT NULL,
+	unique (typ, liczba_drzwi)
 );
 
 CREATE TABLE modele (
-	nazwa varchar(20) PRIMARY KEY,
+	id_modelu serial primary key,
+	producent varchar(20) not null,
+	nazwa varchar(20) not null,
 	produkowany_od date NOT NULL,
 	produkowany_do date,
-	gwarancja int NOT NULL
+	gwarancja int NOT NULL,
+	unique (producent, nazwa)
 );
 
 CREATE TABLE lakiery (
-	typ varchar(20) PRIMARY KEY
+	id_lakieru serial primary key,
+	typ varchar(20) unique
 );
 
 CREATE TABLE kolory (
-	id_koloru int,
-	lakier varchar(20) NOT NULL REFERENCES lakiery (typ),
+	id_koloru serial primary key,
+	id_lakieru int NOT NULL REFERENCES lakiery (id_lakieru),
 	nazwa varchar(30) NOT NULL,
-	PRIMARY KEY (id_koloru, lakier)
+	unique (id_lakieru, nazwa)
 );
 
 CREATE TABLE wersje (
-	id_wersji numeric PRIMARY KEY,
-	model varchar(20) NOT NULL REFERENCES modele (nazwa),
-	silnik int NOT NULL REFERENCES silniki (id_silnika),
-	nadwozie varchar(20) NOT NULL REFERENCES nadwozia (typ),
-	lakier varchar(20) NOT NULL REFERENCES lakiery (typ),
+	id_wersji serial PRIMARY KEY,
+	id_modelu int NOT NULL references modele (id_modelu),
+	id_silnika int NOT NULL REFERENCES silniki (id_silnika),
+	id_nadwozia int NOT NULL REFERENCES nadwozia (id_nadwozia),
+	id_lakieru int NOT NULL REFERENCES lakiery (id_lakieru),
 	cena numeric NOT NULL,
 	nazwa_wersji varchar(20),
-	UNIQUE (model, silnik, nadwozie, lakier)
+	UNIQUE (id_modelu, id_silnika, id_nadwozia, id_lakieru)
 );
 
 CREATE TABLE wyposazenia (
-	id_konfig numeric,
-	model varchar(20) NOT NULL REFERENCES modele (nazwa),
+	id_wypos serial,
+	id_modelu int NOT NULL references modele (id_modelu),
 	abs numeric,
 	esp numeric,
 	klimatyzacja_man numeric,
@@ -60,11 +75,12 @@ CREATE TABLE wyposazenia (
 	el_szyby numeric,
 	el_lusterka numeric,
 	cz_parkowania numeric,
-	PRIMARY KEY (id_konfig, model)
+	PRIMARY KEY (id_wypos, id_modelu)
 );
 
 CREATE TABLE konfiguracje (
-	id_konfig numeric,
+	id_konfig serial unique,
+	id_koloru int NOT NULL REFERENCES kolory (id_koloru),
 	abs boolean,
 	esp boolean,
 	klimatyzacja_man boolean,
@@ -82,22 +98,21 @@ CREATE TABLE konfiguracje (
 	el_szyby boolean,
 	el_lusterka boolean,
 	cz_parkowania boolean,
-	id_koloru int NOT NULL REFERENCES kolory,
 	PRIMARY KEY (id_konfig, id_koloru)
 );
 
 CREATE TABLE auta_na_sprzedaz (
 	vin char(17) PRIMARY KEY,
 	rok_produkcji date NOT NULL,
-	wersja numeric NOT NULL REFERENCES wersje (id_wersji),
-	placowka int NOT NULL REFERENCES placowki (id_placowki)
-	id_konfig numeric NOT NULL,
+	wersja int NOT NULL REFERENCES wersje (id_wersji),
+	placowka int NOT NULL REFERENCES placowki (id_placowki),
+	id_konfig int NOT NULL,
 	id_koloru int NOT NULL,
 	FOREIGN KEY (id_konfig, id_koloru) REFERENCES konfiguracje (id_konfig, id_koloru)
 );
 
 CREATE TABLE klienci (
-	id_klienta int PRIMARY KEY,
+	id_klienta serial PRIMARY KEY,
 	nazwa varchar(100) NOT NULL,
 	telefon varchar(20) NOT NULL,
 	mail varchar(50),
@@ -108,17 +123,17 @@ CREATE TABLE auta_klientow (
 	vin char(17) PRIMARY KEY,
 	nr_rej varchar(10) NOT NULL,
 	rok_produkcji date NOT NULL,
-	wersja numeric NOT NULL REFERENCES wersje (id_wersji),
+	wersja int NOT NULL REFERENCES wersje (id_wersji),
 	data_zakupu date NOT NULL,
 	placowka int NOT NULL REFERENCES placowki (id_placowki),
 	klient int NOT NULL REFERENCES klienci (id_klienta),
-	id_konfig numeric NOT NULL,
+	id_konfig int NOT NULL,
 	id_koloru int NOT NULL,
 	FOREIGN KEY (id_konfig, id_koloru) REFERENCES konfiguracje (id_konfig, id_koloru)
 );
 
 CREATE TABLE naprawy (
-	numer int PRIMARY KEY,
+	numer serial PRIMARY KEY,
 	vin char(17) NOT NULL REFERENCES auta_klientow,
 	placowka int NOT NULL REFERENCES placowki (id_placowki),
 	data date NOT NULL,
@@ -126,11 +141,3 @@ CREATE TABLE naprawy (
 	opis varchar(200) NOT NULL
 );
 
-CREATE TABLE placowki (
-	id_placowki int PRIMARY KEY,
-	nazwa varchar(30) NOT NULL,
-	adres varchar(100) NOT NULL,
-	dochod numeric NOT NULL,
-	telefon varchar(20),
-	mail varchar(50)
-);
