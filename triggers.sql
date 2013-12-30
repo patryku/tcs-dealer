@@ -17,7 +17,7 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER naprawy_update AFTER UPDATE OF koszt ON naprawy
+CREATE TRIGGER naprawy_update AFTER UPDATE OF koszt, placowka ON naprawy
 FOR EACH ROW EXECUTE PROCEDURE naprawy_update();
 
 
@@ -40,5 +40,5 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER auta_klientow_update AFTER UPDATE OF cena_zakupu ON auta_klientow
+CREATE TRIGGER auta_klientow_update AFTER UPDATE OF cena_zakupu, placowka ON auta_klientow
 FOR EACH ROW EXECUTE PROCEDURE auta_klientow_update();
