@@ -46,8 +46,6 @@ CREATE TABLE kolory (
 	unique (id_lakieru, nazwa)
 );
 
-
-
 CREATE TABLE wyposazenia (
 	id_wypos serial primary key,
 	abs numeric,
