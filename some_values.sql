@@ -47,9 +47,9 @@ insert into konfiguracje (id_konfig, id_koloru) values(1337, 1);
 
 insert into auta_na_sprzedaz values('k1r3o3w7a', '1943-10-10', 15000, 2, 1, 1337, 1);
 insert into auta_na_sprzedaz values('12389yh9', '1944-07-11', 22000, 2, 3, 1337, 1);
-insert into auta_na_sprzedaz values('y4585g45h9', '1976-01-25', 0, 1, 2, 1, 4);
-insert into auta_na_sprzedaz values('y45814asah', '1978-05-14', 0, 1, 2, 1, 4);
-insert into auta_na_sprzedaz values('y4585gsad9', '1975-07-07', 0, 1, 2, 1, 4);
+insert into auta_na_sprzedaz values('y4585g45h9', '1976-01-25', 0, 1, 2, 1337, 1);
+insert into auta_na_sprzedaz values('y45814asah', '1978-05-14', 0, 1, 2, 1337, 1);
+insert into auta_na_sprzedaz values('y4585gsad9', '1975-07-07', 0, 1, 2, 1337, 1);
 
 insert into auta_klientow values('g45h4h98h', 'KRA 3451', '2004-05-12', 170000, 1000, '2009-12-18', 65000, 1, 2, 1337, 1);
 insert into auta_klientow values('g42352552', 'WRO 2334', '2006-10-05', 0, 1000, '2007-04-02', 90000, 1, 3, 1337, 1);
