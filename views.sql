@@ -19,7 +19,8 @@ select
 	s.moment as moment_obr, 
 	n.typ as typ_nadwozia, 
 	n.liczba_drzwi as liczba_drzwi, 
-	l.typ as typ_lakieru, 
+	l.typ as typ_lakieru,
+	w.id_wypos as id_wypos,
 	w.cena
 from wersje w 
 	join modele m on w.id_modelu = m.id_modelu 

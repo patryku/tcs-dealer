@@ -46,20 +46,10 @@ CREATE TABLE kolory (
 	unique (id_lakieru, nazwa)
 );
 
-CREATE TABLE wersje (
-	id_wersji serial PRIMARY KEY,
-	id_modelu int NOT NULL references modele (id_modelu),
-	id_silnika int NOT NULL REFERENCES silniki (id_silnika),
-	id_nadwozia int NOT NULL REFERENCES nadwozia (id_nadwozia),
-	id_lakieru int NOT NULL REFERENCES lakiery (id_lakieru),
-	cena numeric NOT NULL CHECK (cena >= 0),
-	nazwa_wersji varchar(20),
-	UNIQUE (id_modelu, id_silnika, id_nadwozia, id_lakieru)
-);
+
 
 CREATE TABLE wyposazenia (
-	id_wypos serial,
-	id_modelu int NOT NULL references modele (id_modelu),
+	id_wypos serial primary key,
 	abs numeric,
 	esp numeric,
 	klimatyzacja_man numeric,
@@ -77,9 +67,20 @@ CREATE TABLE wyposazenia (
 	el_szyby numeric,
 	el_lusterka numeric,
 	cz_parkowania numeric,
-	PRIMARY KEY (id_wypos, id_modelu),
-	UNIQUE (id_modelu, abs, esp, klimatyzacja_man, klimatyzacja_aut, airbag_kier, airbag_pas, airbag_bok, 
+	UNIQUE (abs, esp, klimatyzacja_man, klimatyzacja_aut, airbag_kier, airbag_pas, airbag_bok, 
 	komputer, nawigacja, centr_zamek, alarm, alufelgi, ksenony, tempomat, el_szyby, el_lusterka, cz_parkowania)
+);
+
+CREATE TABLE wersje (
+	id_wersji serial PRIMARY KEY,
+	id_modelu int NOT NULL references modele (id_modelu),
+	id_silnika int NOT NULL REFERENCES silniki (id_silnika),
+	id_nadwozia int NOT NULL REFERENCES nadwozia (id_nadwozia),
+	id_lakieru int NOT NULL REFERENCES lakiery (id_lakieru),
+	id_wypos int not null references wyposazenia (id_wypos),
+	cena numeric NOT NULL CHECK (cena >= 0),
+	nazwa_wersji varchar(20),
+	UNIQUE (id_modelu, id_silnika, id_nadwozia, id_lakieru)
 );
 
 CREATE TABLE konfiguracje (

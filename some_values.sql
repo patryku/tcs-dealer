@@ -26,9 +26,18 @@ insert into kolory_view values('metaliczny', 'czerwony');
 insert into kolory_view values('metaliczny', 'szary');
 
 
-insert into wersje_view values('Volkswagen', 'Garbus', 'wersja1', 'benzynowy', 1100, 45, 300, 'fastback', 2, 'matowy', 5000);
-insert into wersje_view values('Henschel', 'Tiger Ausf. E', 'test3', 'benzynowy', 6000, 800, 3000, 'tygrysek', 1, 'metaliczny', 300000);
+insert into wersje_view values('Volkswagen', 'Garbus', 'wersja1', 'benzynowy', 1100, 45, 300, 'fastback', 2, 'matowy', 1, 5000);
+insert into wersje_view values('Henschel', 'Tiger Ausf. E', 'test3', 'benzynowy', 6000, 800, 3000, 'tygrysek', 1, 'metaliczny', 3, 300000);
 
 insert into klienci (nazwa, telefon, mail, adres) values('Doge', '696-569-769', 'MuchWow@Mail.org', 'SuchStreet 6');
 insert into klienci (nazwa, telefon) values('Jas Roztocze', '911-112-765');
 insert into klienci (nazwa, telefon, adres) values('Zomfg Enterprises', '555-419-555', 'Soft Street 18');
+
+insert into wyposazenia (abs, airbag_pas, ksenony, el_szyby, cz_parkowania) values(0, 500, 500, 300, 200);
+insert into wyposazenia (esp, komputer, centr_zamek, tempomat, alufelgi) values(0, 1000, 0, 0, 2000);
+insert into wyposazenia (alarm, centr_zamek, el_szyby, el_lusterka, airbag_kier, airbag_bok) values(100, 500, 300, 333, 1000, 1000);
+insert into wyposazenia (nawigacja, alufelgi, tempomat, alarm, centr_zamek) values(0, 0, 0, 0, 0);
+insert into wyposazenia (abs, esp, klimatyzacja_man, klimatyzacja_aut, airbag_kier, airbag_pas, airbag_bok, komputer, nawigacja, centr_zamek, alarm, alufelgi, ksenony, tempomat, el_szyby, el_lusterka, cz_parkowania) values(100, 300, 50, 50, 1000, 250, 350, 700, 500, 600, 400, 500, 600, 45, 56, 175, 200);
+
+insert into konfiguracje (id_koloru, klimatyzacja_man, airbag_kier, komputer, ksenony, alufelgi, alarm, el_szyby) values(4, true, true, false, false, true, true, true);
+insert into konfiguracje (id_koloru, klimatyzacja_man, airbag_pas, tempomat, el_lusterka, cz_parkowania, centr_zamek, el_szyby) values(1, true, false, false, false, true, false, true);

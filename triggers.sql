@@ -34,10 +34,17 @@ tmp1 int;
 tmp2 int;
 tmp3 int;
 tmp4 int;
+tmp5 int;
 begin
 	select into tmp1 id_modelu from modele where producent = new.producent and nazwa = new.model;
 	if tmp1 is null then
 		raise notice 'Nie znaleziono takiego modelu samochodu';
+		return new;
+	end if;
+	
+	select into tmp5 id_wypos from wyposazenia where id_wypos = new.id_wypos;
+	if tmp5 is null then
+		raise notice 'Nie znaleziono takiego id wyposazenia';
 		return new;
 	end if;
 	
@@ -59,7 +66,7 @@ begin
 		select into tmp4 id_lakieru from lakiery where typ = new.typ_lakieru;
 	end if;
 	
-	insert into wersje (id_modelu, id_silnika, id_nadwozia, id_lakieru, cena, nazwa_wersji) values(tmp1, tmp2, tmp3, tmp4, new.cena, new.wersja);
+	insert into wersje (id_modelu, id_silnika, id_nadwozia, id_lakieru, id_wypos, cena, nazwa_wersji) values(tmp1, tmp2, tmp3, tmp4, tmp5, new.cena, new.wersja);
 	return new;
 end;
 $$ language plpgsql;
