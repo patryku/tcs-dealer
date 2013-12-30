@@ -98,3 +98,46 @@ for each row
 execute procedure kolory_view_trig();
 
 ----------------------------------------------------------------
+
+create function konfig_wypos_trig() returns trigger as $$
+declare
+	wypos wyposazenia%ROWTYPE;
+	id_w int;
+begin
+	select w.id_wypos into id_w
+	from wersje w join wyposazenia wyp on w.id_wypos = wyp.id_wypos
+	where new.wersja = w.id_wersji;
+
+	select * into wypos from wyposazenia
+	where id_wypos = id_w;
+
+	IF  NEW.abs is not null and wypos.abs is null or
+		NEW.esp is not null and wypos.esp is null or
+		NEW.klimatyzacja_man is not null and wypos.klimatyzacja_man is null or
+		NEW.klimatyzacja_aut is not null and wypos.klimatyzacja_aut is null or
+		NEW.airbag_kier is not null and wypos.airbag_kier is null or
+		NEW.airbag_pas is not null and wypos.airbag_pas is null or
+		NEW.airbag_bok is not null and wypos.airbag_bok is null or
+		NEW.komputer is not null and wypos.komputer is null or
+		NEW.nawigacja is not null and wypos.nawigacja is null or
+		NEW.centr_zamek is not null and wypos.centr_zamek is null or
+		NEW.alarm is not null and wypos.alarm is null or
+		NEW.alufelgi is not null and wypos.alufelgi is null or
+		NEW.ksenony is not null and wypos.ksenony is null or
+		NEW.tempomat is not null and wypos.tempomat is null or
+		NEW.el_szyby is not null and wypos.el_szyby is null or
+		NEW.el_lusterka is not null and wypos.el_lusterka is null or
+		NEW.cz_parkowania is not null and wypos.cz_parkowania is null then
+		raise exception 'Konfiguracja niezgodna z wersja wyposazenia';
+	end if;
+
+	return new;
+end
+$$ language plpgsql;
+
+create trigger konfig_wypos_trig1 before insert or update on auta_na_sprzedaz
+for each row execute procedure konfig_wypos_trig();
+
+create trigger konfig_wypos_trig2 before insert or update on auta_klientow
+for each row execute procedure konfig_wypos_trig();
+----------------------------------------------------------------
