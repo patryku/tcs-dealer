@@ -12,5 +12,5 @@ drop table if exists auta_na_sprzedaz cascade;
 drop table if exists auta_klientow cascade;
 drop table if exists konfiguracje cascade;
 
-drop function if exists kolory_view_trig;
-drop function if exists wersje_view_trig;
+drop function if exists kolory_view_trig();
+drop function if exists wersje_view_trig();
