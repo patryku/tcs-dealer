@@ -77,11 +77,13 @@ CREATE TABLE wyposazenia (
 	el_szyby numeric,
 	el_lusterka numeric,
 	cz_parkowania numeric,
-	PRIMARY KEY (id_wypos, id_modelu)
+	PRIMARY KEY (id_wypos, id_modelu),
+	UNIQUE (id_modelu, abs, esp, klimatyzacja_man, klimatyzacja_aut, airbag_kier, airbag_pas, airbag_bok, 
+	komputer, nawigacja, centr_zamek, alarm, alufelgi, ksenony, tempomat, el_szyby, el_lusterka, cz_parkowania)
 );
 
 CREATE TABLE konfiguracje (
-	id_konfig serial unique,
+	id_konfig serial,
 	id_koloru int NOT NULL REFERENCES kolory (id_koloru),
 	abs boolean,
 	esp boolean,
@@ -100,7 +102,9 @@ CREATE TABLE konfiguracje (
 	el_szyby boolean,
 	el_lusterka boolean,
 	cz_parkowania boolean,
-	PRIMARY KEY (id_konfig, id_koloru)
+	PRIMARY KEY (id_konfig, id_koloru),
+	UNIQUE (id_koloru, abs, esp, klimatyzacja_man, klimatyzacja_aut, airbag_kier, airbag_pas, airbag_bok, 
+	komputer, nawigacja, centr_zamek, alarm, alufelgi, ksenony, tempomat, el_szyby, el_lusterka, cz_parkowania)
 );
 
 CREATE TABLE auta_na_sprzedaz (
