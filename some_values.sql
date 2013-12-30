@@ -34,7 +34,7 @@ insert into wyposazenia (id_wypos) values(666);
 
 insert into wersje_view values('Volkswagen', 'Garbus', 'wersja1', 'benzynowy', 1100, 45, 300, 'fastback', 2, 'matowy', 1, 5000);
 insert into wersje_view values('Henschel', 'Tiger Ausf. E', 'test3', 'benzynowy', 6000, 800, 3000, 'tygrysek', 1, 'metaliczny', 3, 300000);
-
+insert into wersje values(1000, 2, 4, 2, 1, 666, 80000);
 
 insert into klienci (nazwa, telefon, mail, adres) values('Doge', '696-569-769', 'MuchWow@Mail.org', 'SuchStreet 6');
 insert into klienci (nazwa, telefon) values('Jas Roztocze', '911-112-765');
@@ -50,3 +50,6 @@ insert into auta_na_sprzedaz values('12389yh9', '1944-07-11', 22000, 2, 3, 1337,
 insert into auta_na_sprzedaz values('y4585g45h9', '1976-01-25', 0, 1, 2, 1, 4);
 insert into auta_na_sprzedaz values('y45814asah', '1978-05-14', 0, 1, 2, 1, 4);
 insert into auta_na_sprzedaz values('y4585gsad9', '1975-07-07', 0, 1, 2, 1, 4);
+
+insert into auta_klientow values('g45h4h98h', 'KRA 3451', '2004-05-12', 170000, 1000, '2009-12-18', 65000, 1, 2, 1337, 1);
+insert into auta_klientow values('g42352552', 'WRO 2334', '2006-10-05', 0, 1000, '2007-04-02', 90000, 1, 3, 1337, 1);
