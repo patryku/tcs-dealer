@@ -14,3 +14,4 @@ drop table if exists konfiguracje cascade;
 
 drop function if exists kolory_view_trig();
 drop function if exists wersje_view_trig();
+drop function if exists rok_produkcji_trig();
