@@ -28,3 +28,7 @@ insert into kolory_view values('metaliczny', 'szary');
 
 insert into wersje_view values('Volkswagen', 'Garbus', 'wersja1', 'benzynowy', 1100, 45, 300, 'fastback', 2, 'matowy', 5000);
 insert into wersje_view values('Henschel', 'Tiger Ausf. E', 'test3', 'benzynowy', 6000, 800, 3000, 'tygrysek', 1, 'metaliczny', 300000);
+
+insert into klienci (nazwa, telefon, mail, adres) values('Doge', '696-569-769', 'MuchWow@Mail.org', 'SuchStreet 6');
+insert into klienci (nazwa, telefon) values('Jas Roztocze', '911-112-765');
+insert into klienci (nazwa, telefon, adres) values('Zomfg Enterprises', '555-419-555', 'Soft Street 18');
