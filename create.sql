@@ -106,7 +106,7 @@ CREATE TABLE konfiguracje (
 CREATE TABLE auta_na_sprzedaz (
 	vin char(17) PRIMARY KEY,
 	rok_produkcji date NOT NULL,
-	przebieg int NOT NULL,
+	przebieg int NOT NULL CHECK (przebieg >= 0),
 	wersja int NOT NULL REFERENCES wersje (id_wersji),
 	placowka int NOT NULL REFERENCES placowki (id_placowki),
 	id_konfig int NOT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE auta_klientow (
 	vin char(17) PRIMARY KEY,
 	nr_rej varchar(10) NOT NULL,
 	rok_produkcji date NOT NULL,
-	przebieg int NOT NULL,
+	przebieg int NOT NULL CHECK (przebieg >= 0),
 	wersja int NOT NULL REFERENCES wersje (id_wersji),
 	data_zakupu date NOT NULL,
 	cena_zakupu numeric NOT NULL CHECK (cena_zakupu >= 0),
