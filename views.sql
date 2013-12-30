@@ -87,3 +87,21 @@ create trigger wersje_view_trig instead of insert
 on wersje_view
 for each row
 execute procedure wersje_view_trig();
+
+CREATE VIEW naprawy_view as
+SELECT
+	n.numer as numer,
+	n.data as data,
+	n.koszt as koszt,
+	n.opis as opis,
+	p.nazwa as placowka,
+	p.adres as miejsce_naprawy,
+	a.vin as vin,
+	a.nr_rej as nr_rejestracyjny,
+	k.nazwa as klient,
+	k.telefon as telefon_klienta
+FROM naprawy n
+	JOIN placowki p ON n.placowka = p.id_placowki
+	JOIN auta_klientow a ON n.vin = a.vin
+	JOIN klienci k ON a.klient = k.id_klienta
+ORDER BY n.data;
