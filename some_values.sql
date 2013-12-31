@@ -16,7 +16,7 @@ insert into nadwozia (typ, liczba_drzwi) values('kabriolet', 2);
 
 insert into modele (producent, nazwa, produkowany_od, produkowany_do, gwarancja) values('Volkswagen', 'Garbus', '1938-01-01', '2003-12-31', 2);
 insert into modele (producent, nazwa, produkowany_od, produkowany_do, gwarancja) values('Mazda', '6', '2002-03-02', '2007-11-17', 4);
-insert into modele (producent, nazwa, produkowany_od, produkowany_do, gwarancja) values('Henschel', 'Tiger Ausf. E', '1942-04-07', '1945-01-03', 1);
+insert into modele (producent, nazwa, produkowany_od, produkowany_do, gwarancja) values('Henschel', 'Tiger', '1942-04-07', '1945-01-03', 1);
 
 insert into kolory_view values('perlowy', 'zolty');
 insert into kolory_view values('perlowy', 'fioletowy');
@@ -33,7 +33,7 @@ insert into wyposazenia (abs, esp, klimatyzacja_man, klimatyzacja_aut, airbag_ki
 insert into wyposazenia (id_wypos) values(666);
 
 insert into wersje_view values('Volkswagen', 'Garbus', 'wersja1', 'benzynowy', 1100, 45, 300, 'fastback', 2, 'matowy', 1, 5000);
-insert into wersje_view values('Henschel', 'Tiger Ausf. E', 'test3', 'benzynowy', 6000, 800, 3000, 'tygrysek', 1, 'metaliczny', 3, 300000);
+insert into wersje_view values('Henschel', 'Tiger', 'Ausf. E', 'benzynowy', 6000, 800, 3000, 'tygrysek', 1, 'metaliczny', 3, 300000);
 insert into wersje values(1000, 2, 4, 2, 1, 666, 80000);
 
 insert into klienci (nazwa, telefon, mail, adres) values('Doge', '696-569-769', 'MuchWow@Mail.org', 'SuchStreet 6');
@@ -47,9 +47,9 @@ insert into konfiguracje (id_konfig, id_koloru) values(1337, 1);
 
 insert into auta_na_sprzedaz values('k1r3o3w7a', '1943-10-10', 15000, 2, 1, 1337, 1);
 insert into auta_na_sprzedaz values('12389yh9', '1944-07-11', 22000, 2, 3, 1337, 1);
-insert into auta_na_sprzedaz values('y4585g45h9', '1976-01-25', 0, 1, 2, 1, 4);
-insert into auta_na_sprzedaz values('y45814asah', '1978-05-14', 0, 1, 2, 1, 4);
-insert into auta_na_sprzedaz values('y4585gsad9', '1975-07-07', 0, 1, 2, 1, 4);
+insert into auta_na_sprzedaz values('y4585g45h9', '1976-01-25', 0, 1, 2, 1337, 1);
+insert into auta_na_sprzedaz values('y45814asah', '1978-05-14', 0, 1, 2, 1337, 1);
+insert into auta_na_sprzedaz values('y4585gsad9', '1975-07-07', 0, 1, 2, 1337, 1);
 
 insert into auta_klientow values('g45h4h98h', 'KRA 3451', '2004-05-12', 170000, 1000, '2009-12-18', 65000, 1, 2, 1337, 1);
 insert into auta_klientow values('g42352552', 'WRO 2334', '2006-10-05', 0, 1000, '2007-04-02', 90000, 1, 3, 1337, 1);
