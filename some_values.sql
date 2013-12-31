@@ -1,3 +1,4 @@
+begin;
 insert into silniki (typ, pojemnosc, moc, moment) values ('hybrydowy', 1400, 75, 450);
 insert into silniki (typ, pojemnosc, moc, moment) values ('benzynowy', 1100, 50, 300);
 insert into silniki (typ, pojemnosc, moc, moment) values ('wysokoprezny', 3000, 600, 1200);
@@ -54,3 +55,9 @@ insert into auta_na_sprzedaz values('y4585gsad9', '1975-07-07', 0, 1, 2, 1338, 4
 
 insert into auta_klientow values('g45h4h98h', 'KRA 3451', '2004-05-12', 170000, 1000, '2009-12-18', 65000, 1, 2, 1337, 1);
 insert into auta_klientow values('g42352552', 'WRO 2334', '2006-10-05', 0, 1000, '2007-04-02', 90000, 1, 3, 1337, 1);
+
+insert into naprawy (vin, placowka, data, koszt, opis) values('g45h4h98h', 3, '2008-01-01', 800, 'Wymiana prawego lusterka.');
+insert into naprawy (vin, placowka, data, koszt, opis) values('g45h4h98h', 2, '2008-07-06', 1600, 'Wymiana przedniej szyby.');
+insert into naprawy (vin, placowka, data, koszt, opis) values('g42352552', 2, '2010-04-06', 900, 'Lakierowanie przedniego zderzaka.');
+
+commit;
