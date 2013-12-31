@@ -16,3 +16,4 @@ drop function if exists kolory_view_trig();
 drop function if exists wersje_view_trig();
 drop function if exists rok_produkcji_trig();
 drop function if exists konfig_wypos_trig();
+drop function if exists cena_fabryczna(char(17));

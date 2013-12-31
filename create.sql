@@ -78,7 +78,7 @@ CREATE TABLE wersje (
 	id_wypos int not null references wyposazenia (id_wypos),
 	cena numeric NOT NULL CHECK (cena >= 0),
 	nazwa_wersji varchar(20),
-	UNIQUE (id_modelu, id_silnika, id_nadwozia, id_lakieru)
+	UNIQUE (id_modelu, id_silnika, id_nadwozia, id_lakieru, id_wypos)
 );
 
 CREATE TABLE konfiguracje (
