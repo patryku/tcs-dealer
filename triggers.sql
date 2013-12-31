@@ -102,6 +102,7 @@ execute procedure kolory_view_trig();
 create function konfig_wypos_trig() returns trigger as $$
 declare
 	wypos wyposazenia%ROWTYPE;
+	konf konfiguracje%ROWTYPE;
 	id_w int;
 begin
 	select w.id_wypos into id_w
@@ -111,23 +112,46 @@ begin
 	select * into wypos from wyposazenia
 	where id_wypos = id_w;
 
-	IF  NEW.abs is not null and wypos.abs is null or
-		NEW.esp is not null and wypos.esp is null or
-		NEW.klimatyzacja_man is not null and wypos.klimatyzacja_man is null or
-		NEW.klimatyzacja_aut is not null and wypos.klimatyzacja_aut is null or
-		NEW.airbag_kier is not null and wypos.airbag_kier is null or
-		NEW.airbag_pas is not null and wypos.airbag_pas is null or
-		NEW.airbag_bok is not null and wypos.airbag_bok is null or
-		NEW.komputer is not null and wypos.komputer is null or
-		NEW.nawigacja is not null and wypos.nawigacja is null or
-		NEW.centr_zamek is not null and wypos.centr_zamek is null or
-		NEW.alarm is not null and wypos.alarm is null or
-		NEW.alufelgi is not null and wypos.alufelgi is null or
-		NEW.ksenony is not null and wypos.ksenony is null or
-		NEW.tempomat is not null and wypos.tempomat is null or
-		NEW.el_szyby is not null and wypos.el_szyby is null or
-		NEW.el_lusterka is not null and wypos.el_lusterka is null or
-		NEW.cz_parkowania is not null and wypos.cz_parkowania is null then
+	select * into konf from konfiguracje
+	where id_konfig = new.id_konfig and id_koloru = new.id_koloru;
+
+	if  (konf.abs is not null and wypos.abs is null) or
+		(konf.esp is not null and wypos.esp is null) or
+		(konf.klimatyzacja_man is not null and wypos.klimatyzacja_man is null) or
+		(konf.klimatyzacja_aut is not null and wypos.klimatyzacja_aut is null) or
+		(konf.airbag_kier is not null and wypos.airbag_kier is null) or
+		(konf.airbag_pas is not null and wypos.airbag_pas is null) or
+		(konf.airbag_bok is not null and wypos.airbag_bok is null) or
+		(konf.komputer is not null and wypos.komputer is null) or
+		(konf.nawigacja is not null and wypos.nawigacja is null) or
+		(konf.centr_zamek is not null and wypos.centr_zamek is null) or
+		(konf.alarm is not null and wypos.alarm is null) or
+		(konf.alufelgi is not null and wypos.alufelgi is null) or
+		(konf.ksenony is not null and wypos.ksenony is null) or
+		(konf.tempomat is not null and wypos.tempomat is null) or
+		(konf.el_szyby is not null and wypos.el_szyby is null) or
+		(konf.el_lusterka is not null and wypos.el_lusterka is null) or
+		(konf.cz_parkowania is not null and wypos.cz_parkowania is null) then
+		raise exception 'Konfiguracja niezgodna z wersja wyposazenia';
+	end if;
+
+	if  (konf.abs is null and wypos.abs is not null and wypos.abs = 0) or
+		(konf.esp is null and wypos.esp is not null and wypos.esp = 0) or
+		(konf.klimatyzacja_man is null and wypos.klimatyzacja_man is not null and wypos.klimatyzacja_man = 0) or
+		(konf.klimatyzacja_aut is null and wypos.klimatyzacja_aut is not null and wypos.klimatyzacja_aut = 0) or
+		(konf.airbag_kier is null and wypos.airbag_kier is not null and wypos.airbag_kier = 0) or
+		(konf.airbag_pas is null and wypos.airbag_pas is not null and wypos.airbag_pas = 0) or
+		(konf.airbag_bok is null and wypos.airbag_bok is not null and wypos.airbag_bok = 0) or
+		(konf.komputer is null and wypos.komputer is not null and wypos.komputer = 0) or
+		(konf.nawigacja is null and wypos.nawigacja is not null and wypos.nawigacja = 0) or
+		(konf.centr_zamek is null and wypos.centr_zamek is not null and wypos.centr_zamek = 0) or
+		(konf.alarm is null and wypos.alarm is not null and wypos.alarm = 0) or
+		(konf.alufelgi is null and wypos.alufelgi is not null and wypos.alufelgi = 0) or
+		(konf.ksenony is null and wypos.ksenony is not null and wypos.ksenony = 0) or
+		(konf.tempomat is null and wypos.tempomat is not null and wypos.tempomat = 0) or
+		(konf.el_szyby is null and wypos.el_szyby is not null and wypos.el_szyby = 0) or
+		(konf.el_lusterka is null and wypos.el_lusterka is not null and wypos.el_lusterka = 0) or
+		(konf.cz_parkowania is null and wypos.cz_parkowania is not null and wypos.cz_parkowania = 0) then
 		raise exception 'Konfiguracja niezgodna z wersja wyposazenia';
 	end if;
 
