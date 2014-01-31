@@ -1,3 +1,5 @@
+begin;
+
 create view kolory_view
 as
 select 
@@ -20,7 +22,6 @@ select
 	n.typ as typ_nadwozia, 
 	n.liczba_drzwi as liczba_drzwi, 
 	l.typ as typ_lakieru,
-	w.id_wypos as id_wypos,
 	w.cena
 from wersje w 
 	join modele m on w.id_modelu = m.id_modelu 
@@ -46,3 +47,5 @@ FROM naprawy n
 	JOIN auta_klientow a ON n.vin = a.vin
 	JOIN klienci k ON a.klient = k.id_klienta
 ORDER BY n.data;
+
+commit;

@@ -1,4 +1,5 @@
 begin;
+
 insert into silniki (typ, pojemnosc, moc, moment) values ('hybrydowy', 1400, 75, 450);
 insert into silniki (typ, pojemnosc, moc, moment) values ('benzynowy', 1100, 50, 300);
 insert into silniki (typ, pojemnosc, moc, moment) values ('wysokoprezny', 3000, 600, 1200);
@@ -26,35 +27,28 @@ insert into kolory_view values('matowy', 'niebieski');
 insert into kolory_view values('metaliczny', 'czerwony');
 insert into kolory_view values('metaliczny', 'szary');
 
-insert into wyposazenia (abs, airbag_pas, ksenony, el_szyby, cz_parkowania) values(0, 500, 500, 300, 200);
-insert into wyposazenia (esp, komputer, centr_zamek, tempomat, alufelgi) values(0, 1000, 0, 0, 2000);
-insert into wyposazenia (alarm, centr_zamek, el_szyby, el_lusterka, airbag_kier, airbag_bok) values(100, 500, 300, 333, 1000, 1000);
-insert into wyposazenia (nawigacja, alufelgi, tempomat, alarm, centr_zamek) values(0, 0, 0, 0, 0);
-insert into wyposazenia (abs, esp, klimatyzacja_man, klimatyzacja_aut, airbag_kier, airbag_pas, airbag_bok, komputer, nawigacja, centr_zamek, alarm, alufelgi, ksenony, tempomat, el_szyby, el_lusterka, cz_parkowania) values(100, 300, 50, 50, 1000, 250, 350, 700, 500, 600, 400, 500, 600, 45, 56, 175, 200);
-insert into wyposazenia (id_wypos) values(666);
+insert into wersje_view values('Volkswagen', 'Garbus', 'wersja1', 'benzynowy', 1100, 45, 300, 'fastback', 2, 'matowy', 5000);
+insert into wersje_view values('Henschel', 'Tiger', 'Ausf. E', 'benzynowy', 6000, 800, 3000, 'tygrysek', 1, 'metaliczny', 300000);
+insert into wersje values(1000, 2, 4, 2, 1, 80000);
 
-insert into wersje_view values('Volkswagen', 'Garbus', 'wersja1', 'benzynowy', 1100, 45, 300, 'fastback', 2, 'matowy', 1, 5000);
-insert into wersje_view values('Henschel', 'Tiger', 'Ausf. E', 'benzynowy', 6000, 800, 3000, 'tygrysek', 1, 'metaliczny', 3, 300000);
-insert into wersje values(1000, 2, 4, 2, 1, 666, 80000);
+insert into wyposazenia (id_wersji, nazwa, cena) values(2, 'ABS', 0);
+insert into wyposazenia (id_wersji, nazwa, cena) values(1000, 'ESP', 2000);
 
 insert into klienci (nazwa, telefon, mail, adres) values('Doge', '696-569-769', 'MuchWow@Mail.org', 'SuchStreet 6');
 insert into klienci (nazwa, telefon) values('Jas Roztocze', '911-112-765');
 insert into klienci (nazwa, telefon, adres) values('Zomfg Enterprises', '555-419-555', 'Soft Street 18');
 
-insert into konfiguracje (id_koloru, klimatyzacja_man, airbag_kier, komputer, ksenony, alufelgi, alarm, el_szyby) values(4, true, true, false, false, true, true, true);
-insert into konfiguracje (id_koloru, klimatyzacja_man, airbag_pas, tempomat, el_lusterka, cz_parkowania, centr_zamek, el_szyby) values(1, true, false, false, false, true, false, true);
-insert into konfiguracje (id_koloru, abs, airbag_kier, alarm, alufelgi, el_szyby) values(6, true, true, true, true, true);
-insert into konfiguracje (id_konfig, id_koloru) values(1337, 1);
-insert into konfiguracje (id_konfig, id_koloru, abs) values(1338, 4, true);
+insert into auta_na_sprzedaz values('k1r3o3w7a', '1943-10-10', 15000, 2, 1, 1);
+insert into auta_na_sprzedaz values('12389yh9', '1944-07-11', 22000, 2, 3, 1);
+insert into auta_na_sprzedaz values('y4585g45h9', '1976-01-25', 0, 1, 2, 4);
+insert into auta_na_sprzedaz values('y45814asah', '1978-05-14', 0, 1, 2, 4);
+insert into auta_na_sprzedaz values('y4585gsad9', '1975-07-07', 0, 1, 2, 4);
 
-insert into auta_na_sprzedaz values('k1r3o3w7a', '1943-10-10', 15000, 2, 1, 1337, 1);
-insert into auta_na_sprzedaz values('12389yh9', '1944-07-11', 22000, 2, 3, 1337, 1);
-insert into auta_na_sprzedaz values('y4585g45h9', '1976-01-25', 0, 1, 2, 1338, 4);
-insert into auta_na_sprzedaz values('y45814asah', '1978-05-14', 0, 1, 2, 1338, 4);
-insert into auta_na_sprzedaz values('y4585gsad9', '1975-07-07', 0, 1, 2, 1338, 4);
+insert into auta_klientow values('g45h4h98h', 'KRA 3451', '2004-05-12', 170000, 1000, '2009-12-18', 65000, 1, 2, 1);
+insert into auta_klientow values('g42352552', 'WRO 2334', '2006-10-05', 0, 1000, '2007-04-02', 90000, 1, 3, 1);
 
-insert into auta_klientow values('g45h4h98h', 'KRA 3451', '2004-05-12', 170000, 1000, '2009-12-18', 65000, 1, 2, 1337, 1);
-insert into auta_klientow values('g42352552', 'WRO 2334', '2006-10-05', 0, 1000, '2007-04-02', 90000, 1, 3, 1337, 1);
+insert into konfiguracje (vin, nazwa) values('g45h4h98h', 'ESP');
+insert into konfiguracje (vin, nazwa) values('12389yh9', 'ABS');
 
 insert into naprawy (vin, placowka, data, koszt, opis) values('g45h4h98h', 3, '2008-01-01', 800, 'Wymiana prawego lusterka.');
 insert into naprawy (vin, placowka, data, koszt, opis) values('g45h4h98h', 2, '2008-07-06', 1600, 'Wymiana przedniej szyby.');
