@@ -54,7 +54,7 @@ CREATE TABLE wersje (
 	id_lakieru int NOT NULL REFERENCES lakiery (id_lakieru),
 	cena numeric NOT NULL CHECK (cena >= 0),
 	nazwa_wersji varchar(20),
-	UNIQUE (id_modelu, id_silnika, id_nadwozia, id_lakieru)
+	UNIQUE (id_modelu, id_silnika, id_nadwozia, id_lakieru, nazwa_wersji)
 );
 
 CREATE TABLE wyposazenia (
