@@ -2,8 +2,8 @@ package view.components;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 public class OptionDisplay extends JPanel {
 
 	private static final long serialVersionUID = -5574435430820741090L;
+	private JCheckBox optionCheckBox;
 
 	/**
 	 * Create the panel.
@@ -25,9 +26,9 @@ public class OptionDisplay extends JPanel {
 		JLabel optionName = new JLabel(name + "   " + price + " zł");
 		add(optionName, BorderLayout.CENTER);
 		
-		final JCheckBox optionCheckBox = new JCheckBox("");
-		optionCheckBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		optionCheckBox = new JCheckBox("");
+		optionCheckBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
 				if(optionCheckBox.isSelected()) {
 					double p = Double.parseDouble(lblPrice.getText().replaceFirst(" zł", ""));
 					lblPrice.setText((p + price) + " zł");
@@ -43,6 +44,10 @@ public class OptionDisplay extends JPanel {
 		});
 		add(optionCheckBox, BorderLayout.EAST);
 
+	}
+	
+	public JCheckBox getCheckBox() {
+		return optionCheckBox;
 	}
 
 }

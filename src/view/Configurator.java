@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -470,6 +471,9 @@ public class Configurator extends JFrame {
 		JButton btnOptionPrev = new JButton("Wstecz");
 		btnOptionPrev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				for(Component c : optionList.getComponents()) {
+					((OptionDisplay) c).getCheckBox().setSelected(false);
+				}
 				optionInfoList.removeAll();
 				optionInfoList.setModel(new DefaultListModel<String>());
 				optionList.removeAll();

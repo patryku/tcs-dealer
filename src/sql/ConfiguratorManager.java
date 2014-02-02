@@ -1,5 +1,6 @@
 package sql;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,8 +79,17 @@ public class ConfiguratorManager {
 		String model = car.split(" ")[1];
 		String typ_nadwozia = body.split(" ")[0];
 		int liczba_drzwi = Integer.parseInt(body.split(" ")[1].substring(0, 1));
-		try (PreparedStatement st = SQLUtils.getConnection().prepareStatement(query);
-				PreparedStatement st2 = SQLUtils.getConnection().prepareStatement(query2)) {
+		
+		Connection con = null;
+		try {
+			con = SQLUtils.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return res;
+		}
+		
+		try (PreparedStatement st = con.prepareStatement(query);
+				PreparedStatement st2 = con.prepareStatement(query2)) {
 			st.setString(1, producent);
 			st.setString(2, model);
 			st.setString(3, typ_nadwozia);
@@ -148,12 +158,20 @@ public class ConfiguratorManager {
 		int liczba_drzwi = Integer.parseInt(body.split(" ")[1].substring(0, 1));
 		String lakier = paint.split(" ")[1];
 		
-		try (PreparedStatement modelSt = SQLUtils.getConnection().prepareStatement(modelQuery);
-				PreparedStatement bodySt = SQLUtils.getConnection().prepareStatement(bodyQuery);
-				PreparedStatement paintSt = SQLUtils.getConnection().prepareStatement(paintQuery);
-				PreparedStatement engineSt = SQLUtils.getConnection().prepareStatement(engineQuery);
-				PreparedStatement versionSt = SQLUtils.getConnection().prepareStatement(versionQuery);
-				PreparedStatement optionSt = SQLUtils.getConnection().prepareStatement(optionQuery)) {
+		Connection con = null;
+		try {
+			con = SQLUtils.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return res;
+		}
+		
+		try (PreparedStatement modelSt = con.prepareStatement(modelQuery);
+				PreparedStatement bodySt = con.prepareStatement(bodyQuery);
+				PreparedStatement paintSt = con.prepareStatement(paintQuery);
+				PreparedStatement engineSt = con.prepareStatement(engineQuery);
+				PreparedStatement versionSt = con.prepareStatement(versionQuery);
+				PreparedStatement optionSt = con.prepareStatement(optionQuery)) {
 			
 			modelSt.setString(1, producent);
 			modelSt.setString(2, model);
