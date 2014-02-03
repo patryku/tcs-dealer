@@ -39,17 +39,17 @@ insert into kolory_view values('perlowy', 'bialy');
 insert into kolory_view values('perlowy', 'czarny');
 insert into kolory_view values('matowy', 'czarny');
 
-insert into wersje_view values('Volkswagen', 'Golf', 'Trendline', 'benzynowy', 1200, 85, 160, 'hatchback', 3, 'metaliczny', 61790);
-insert into wersje_view values('Volkswagen', 'Golf', 'Trendline', 'benzynowy', 1200, 105, 175, 'hatchback', 3, 'metaliczny', 65990);
-insert into wersje_view values('Volkswagen', 'Golf', 'Trendline', 'benzynowy', 1200, 85, 160, 'hatchback', 5, 'metaliczny', 62990);
-insert into wersje_view values('Volkswagen', 'Golf', 'Highline', 'benzynowy', 1400, 122, 200, 'hatchback', 5, 'metaliczny', 78090);
-insert into wersje_view values('Volkswagen', 'Golf', 'Trendline', 'benzynowy', 1200, 105, 175, 'hatchback', 5, 'metaliczny', 67190);
-insert into wersje_view values('Volkswagen', 'Golf', 'Trendline', 'wysokoprezny', 1600, 105, 250, 'hatchback', 5, 'metaliczny', 77290);
-insert into wersje_view values('Volkswagen', 'Golf', 'Highline', 'benzynowy', 1400, 140, 220, 'hatchback', 5, 'metaliczny', 81290);
-insert into wersje_view values('Volkswagen', 'Golf', 'Highline', 'wysokoprezny', 2000, 150, 320, 'hatchback', 5, 'metaliczny', 95190);
-insert into wersje_view values('Volkswagen', 'Golf', 'R', 'benzynowy', 2000, 300, 380, 'hatchback', 5, 'metaliczny', 149190);
-insert into wersje_view values('Volkswagen', 'Passat', 'Highline', 'benzynowy', 1400, 160, 240, 'sedan', 4, 'metaliczny', 110690);
-insert into wersje_view values('Volkswagen', 'Passat', 'Highline', 'benzynowy', 2000, 210, 280, 'kombi', 5, 'metaliczny', 138590);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'Trendline', 'benzynowy', 1200, 85, 160, 'hatchback', 3, 'metaliczny', 61790);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'Trendline', 'benzynowy', 1200, 105, 175, 'hatchback', 3, 'metaliczny', 65990);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'Trendline', 'benzynowy', 1200, 85, 160, 'hatchback', 5, 'metaliczny', 62990);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'Highline', 'benzynowy', 1400, 122, 200, 'hatchback', 5, 'metaliczny', 78090);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'Trendline', 'benzynowy', 1200, 105, 175, 'hatchback', 5, 'metaliczny', 67190);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'Trendline', 'wysokoprezny', 1600, 105, 250, 'hatchback', 5, 'metaliczny', 77290);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'Highline', 'benzynowy', 1400, 140, 220, 'hatchback', 5, 'metaliczny', 81290);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'Highline', 'wysokoprezny', 2000, 150, 320, 'hatchback', 5, 'metaliczny', 95190);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Golf', 'R', 'benzynowy', 2000, 300, 380, 'hatchback', 5, 'metaliczny', 149190);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Passat', 'Highline', 'benzynowy', 1400, 160, 240, 'sedan', 4, 'metaliczny', 110690);
+insert into wersje_view values(DEFAULT, 'Volkswagen', 'Passat', 'Highline', 'benzynowy', 2000, 210, 280, 'kombi', 5, 'metaliczny', 138590);
 
 insert into wyposazenia (id_wersji, nazwa, cena) values(1, 'abs', 0);
 insert into wyposazenia (id_wersji, nazwa, cena) values(2, 'abs', 0);
