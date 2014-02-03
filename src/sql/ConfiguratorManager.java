@@ -144,12 +144,9 @@ public class ConfiguratorManager {
 		
 		Vector<OptionDisplay> res = new Vector<>();
 		
-		String modelQuery = "SELECT id_modelu FROM modele WHERE producent = ? AND nazwa = ?;";
-		String bodyQuery = "SELECT id_nadwozia FROM nadwozia WHERE typ = ? AND liczba_drzwi = ?;";
-		String paintQuery = "SELECT id_lakieru FROM lakiery WHERE typ = ?;";
-		String engineQuery = "SELECT id_silnika FROM silniki WHERE typ = ? AND pojemnosc = ? AND moc = ? AND moment = ?;";
-		String versionQuery = "SELECT id_wersji FROM wersje WHERE id_modelu = ? AND id_silnika = ? " + 
-								"AND id_nadwozia = ? AND id_lakieru = ? AND nazwa_wersji = ?;";
+		String versionQuery = "SELECT id FROM wersje_view WHERE producent = ? AND model = ? " + 
+								"AND wersja = ? AND typ_silnika = ? AND pojemnosc = ? AND moc = ? AND moment_obr = ? " + 
+								"AND typ_nadwozia = ? AND liczba_drzwi = ? AND typ_lakieru = ?;";
 		String optionQuery = "SELECT nazwa, cena FROM wyposazenia WHERE id_wersji = ? AND cena > 0;";
 		
 		String producent = car.split(" ")[0];
@@ -166,44 +163,20 @@ public class ConfiguratorManager {
 			return res;
 		}
 		
-		try (PreparedStatement modelSt = con.prepareStatement(modelQuery);
-				PreparedStatement bodySt = con.prepareStatement(bodyQuery);
-				PreparedStatement paintSt = con.prepareStatement(paintQuery);
-				PreparedStatement engineSt = con.prepareStatement(engineQuery);
-				PreparedStatement versionSt = con.prepareStatement(versionQuery);
+		try (PreparedStatement versionSt = con.prepareStatement(versionQuery);
 				PreparedStatement optionSt = con.prepareStatement(optionQuery)) {
 			
-			modelSt.setString(1, producent);
-			modelSt.setString(2, model);
-			ResultSet rs = modelSt.executeQuery();
-			rs.next();
-			int id_modelu = rs.getInt(1);
-			
-			bodySt.setString(1, typ_nadwozia);
-			bodySt.setInt(2, liczba_drzwi);
-			rs = bodySt.executeQuery();
-			rs.next();
-			int id_nadwozia = rs.getInt(1);
-			
-			paintSt.setString(1, lakier);
-			rs = paintSt.executeQuery();
-			rs.next();
-			int id_lakieru = rs.getInt(1);
-			
-			engineSt.setString(1, engine[0]);
-			engineSt.setInt(2, Integer.parseInt(engine[1].split(" ")[0]));
-			engineSt.setInt(3, Integer.parseInt(engine[2].split(" ")[0]));
-			engineSt.setInt(4, Integer.parseInt(engine[3].split(" ")[0]));
-			rs = engineSt.executeQuery();
-			rs.next();
-			int id_silnika = rs.getInt(1);
-			
-			versionSt.setInt(1, id_modelu);
-			versionSt.setInt(2, id_silnika);
-			versionSt.setInt(3, id_nadwozia);
-			versionSt.setInt(4, id_lakieru);
-			versionSt.setString(5, version);
-			rs = versionSt.executeQuery();
+			versionSt.setString(1, producent);
+			versionSt.setString(2, model);
+			versionSt.setString(3, version);
+			versionSt.setString(4, engine[0]);
+			versionSt.setInt(5, Integer.parseInt(engine[1].split(" ")[0]));
+			versionSt.setInt(6, Integer.parseInt(engine[2].split(" ")[0]));
+			versionSt.setInt(7, Integer.parseInt(engine[3].split(" ")[0]));
+			versionSt.setString(8, typ_nadwozia);
+			versionSt.setInt(9, liczba_drzwi);
+			versionSt.setString(10, lakier);
+			ResultSet rs = versionSt.executeQuery();
 			rs.next();
 			int id_wersji = rs.getInt(1);
 			
