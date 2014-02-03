@@ -12,11 +12,12 @@ order by id_koloru;
 create view wersje_view
 as
 select 
+	w.id_wersji as id,
 	m.producent as producent, 
 	m.nazwa as model, 
 	w.nazwa_wersji as wersja,
 	s.typ as typ_silnika, 
-	s.pojemnosc as pojemnosc, 
+	s.pojemnosc as pojemnosc,
 	s.moc as moc, 
 	s.moment as moment_obr, 
 	n.typ as typ_nadwozia, 

@@ -560,5 +560,6 @@ public class Configurator extends JFrame {
 				cards.next(configPanel);
 			}
 		});
+		toFront();
 	}
 }
