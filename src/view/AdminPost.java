@@ -16,6 +16,8 @@ import sql.PostManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.SwingConstants;
 
 public class AdminPost extends JFrame {
@@ -86,7 +88,7 @@ public class AdminPost extends JFrame {
 		addressField.setColumns(15);
 		
 		phoneField = new JTextField();
-		phoneField.setText("nnn-nnn-nnn");
+		phoneField.setText("numer tel");
 		phoneField.setToolTipText("Telefon do placowki");
 		body.add(phoneField);
 		phoneField.setColumns(8);
@@ -117,7 +119,11 @@ public class AdminPost extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String s1 = nameField.getText(), s2 = addressField.getText(), s3 = phoneField.getText(), s4 = emailField.getText();
 				
-				PostManager.addPost(s1, s2, s3, s4);
+				try {
+					PostManager.addPost(s1, s2, s3, s4);
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
 				dispose();
 			}
 		});

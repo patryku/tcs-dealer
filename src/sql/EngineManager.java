@@ -1,22 +1,28 @@
 package sql;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class EngineManager {
 
 	/**
 	 * @param args
+	 * @throws SQLException 
 	 */
-	public static void addEngine(String typ, String pojemnosc, String moc, String moment){
-		try{
-			if(Integer.parseInt(pojemnosc) <= 0 || Integer.parseInt(moc) <= 0 || Integer.parseInt(moment) <= 0){
-				System.out.println("Nieprawidlowe dane silnika");
-				return;
-			}
-		}catch(NumberFormatException nfe){
-			System.out.println("Nieprawidlowe dane silnika");
+	public static void addEngine(String typ, String pojemnosc, String moc, String moment) throws SQLException{
+		
+		Connection conn = SQLUtils.getConnection();
+		String query = "insert into silniki (typ, pojemnosc, moc, moment) values (\'" + 
+		typ + "\', " + pojemnosc + ", " + moc + ", " + moment + ");";
+		try (Statement st = conn.createStatement()) {
+			st.executeUpdate(query);
+		}catch(SQLException e){
+			System.out.println(e);
 			return;
 		}
+		
 		System.out.println("Dodano silnik do bazy: (typ: " + typ + ", pojemnosc: " + pojemnosc + ", moc: " + moc + ", moment: " + moment + ")");
-		//TODO: dodaj silnik do bazy
 	}
 
 }

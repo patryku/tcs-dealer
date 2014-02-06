@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import sql.ModelManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class AdminModel extends JFrame {
 
@@ -30,6 +31,7 @@ public class AdminModel extends JFrame {
 	private JButton cancelButton;
 	private JButton okButton;
 	private static AdminModel instance = null; 
+	private JTextField warrantyField;
 	/**
 	 * Launch the application.
 	 */
@@ -88,6 +90,12 @@ public class AdminModel extends JFrame {
 		body.add(dateField);
 		dateField.setColumns(10);
 		
+		warrantyField = new JTextField();
+		warrantyField.setToolTipText("Lata gwarancji");
+		warrantyField.setText("gwarancja");
+		body.add(warrantyField);
+		warrantyField.setColumns(4);
+		
 		buttonField = new JPanel();
 		contentPane.add(buttonField, BorderLayout.SOUTH);
 		buttonField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -105,9 +113,13 @@ public class AdminModel extends JFrame {
 		okButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String s1 = producentField.getText(), s2 = modelField.getText(), s3 = dateField.getText();
+				String s1 = producentField.getText(), s2 = modelField.getText(), s3 = dateField.getText(), s4 = warrantyField.getText();
 				
-				ModelManager.addModel(s1, s2, s3);
+				try {
+					ModelManager.addModel(s1, s2, s3, s4);
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
 				dispose();
 			}
 		});

@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import sql.SuspensionManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class AdminSuspension extends JFrame {
 
@@ -99,7 +100,11 @@ public class AdminSuspension extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String s1 = typeField.getText(), s2 = doorField.getText();
 				
-				SuspensionManager.addSuspension(s1, s2);
+				try {
+					SuspensionManager.addSuspension(s1, s2);
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
 				dispose();
 			}
 		});

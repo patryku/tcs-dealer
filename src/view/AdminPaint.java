@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import sql.PaintManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class AdminPaint extends JFrame {
 
@@ -28,6 +29,7 @@ public class AdminPaint extends JFrame {
 	private JButton cancelButton;
 	private JButton okButton;
 	private static AdminPaint instance = null; 
+	private JTextField colorField;
 	/**
 	 * Launch the application.
 	 */
@@ -73,6 +75,12 @@ public class AdminPaint extends JFrame {
 		body.add(typeField);
 		typeField.setColumns(15);
 		
+		colorField = new JTextField();
+		colorField.setToolTipText("Kolor lakieru");
+		colorField.setText("kolor lakieru");
+		body.add(colorField);
+		colorField.setColumns(10);
+		
 		buttonField = new JPanel();
 		contentPane.add(buttonField, BorderLayout.SOUTH);
 		buttonField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -90,9 +98,13 @@ public class AdminPaint extends JFrame {
 		okButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String s1 = typeField.getText();
+				String s1 = typeField.getText(), s2 = colorField.getText();
 				
-				PaintManager.addPaint(s1);
+				try {
+					PaintManager.addPaint(s1, s2);
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
 				dispose();
 			}
 		});

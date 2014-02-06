@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import sql.EngineManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class AdminEngine extends JFrame {
 
@@ -114,7 +115,11 @@ public class AdminEngine extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String s1 = typeField.getText(), s2 = displacementField.getText(), s3 = powerField.getText(), s4 = momentField.getText();
 				
-				EngineManager.addEngine(s1, s2, s3, s4);
+				try {
+					EngineManager.addEngine(s1, s2, s3, s4);
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
 				dispose();
 			}
 		});
