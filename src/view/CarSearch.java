@@ -118,6 +118,9 @@ public class CarSearch extends JFrame {
 		JLabel lblEngine = new JLabel("Silnik");
 		content.add(lblEngine, "2, 2");
 		
+		JLabel lblWyposazenie = new JLabel("Wyposazenie");
+		content.add(lblWyposazenie, "16, 2");
+		
 		JLabel lblTyp = new JLabel("typ:");
 		content.add(lblTyp, "4, 4");
 		
@@ -127,11 +130,8 @@ public class CarSearch extends JFrame {
 		JComboBox<String> engineBox = new JComboBox<>(engTypes);
 		content.add(engineBox, "6, 4, 4, 1, left, default");
 		
-		JLabel lblWyposazenie = new JLabel("Wyposazenie");
-		content.add(lblWyposazenie, "16, 4");
-		
 		JScrollPane optionPane = new JScrollPane();
-		content.add(optionPane, "16, 5, 1, 20");
+		content.add(optionPane, "16, 4, 1, 21");
 		
 		JPanel optionList = new JPanel();
 		optionPane.setViewportView(optionList);
