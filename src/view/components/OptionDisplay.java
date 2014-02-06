@@ -15,18 +15,26 @@ public class OptionDisplay extends JPanel {
 
 	private static final long serialVersionUID = -5574435430820741090L;
 	private JCheckBox optionCheckBox;
+	private JLabel optionName;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public OptionDisplay(final String name, final double price, final JLabel lblPrice, final JList<String> optionList) {
+	public OptionDisplay(String name) {
 		setLayout(new BorderLayout(0, 0));
 		setMaximumSize(new Dimension(2000, 30));
 		
-		JLabel optionName = new JLabel(name + "   " + price + " zł");
+		optionName = new JLabel(name);
 		add(optionName, BorderLayout.CENTER);
 		
 		optionCheckBox = new JCheckBox("");
+		add(optionCheckBox, BorderLayout.WEST);
+	}
+	
+	public OptionDisplay(final String name, final double price, final JLabel lblPrice, final JList<String> optionList) {
+		this(name);
+		optionName.setText(name + "   " + price + " zł");
 		optionCheckBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				if(optionCheckBox.isSelected()) {
@@ -42,8 +50,6 @@ public class OptionDisplay extends JPanel {
 				}
 			}
 		});
-		add(optionCheckBox, BorderLayout.EAST);
-
 	}
 	
 	public JCheckBox getCheckBox() {
