@@ -150,6 +150,62 @@ public class AdminTool extends JFrame {
 		});
 		panel_2.add(addVerButton);
 		
+		JButton addCarButton = new JButton("dodaj samochod");
+		addCarButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AdminAddCar.getInstance().setVisible(true);
+			}
+		});
+		panel_2.add(addCarButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		panel_2.add(btnNewButton_1);
+		
+		JPanel lookupField = new JPanel();
+		body.add(lookupField);
+		
+		JButton postListButton = new JButton("lista placowek");
+		postListButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AdminPostList.getInstance().setVisible(true);
+			}
+		});
+		lookupField.add(postListButton);
+		
+		JButton verSearchButton = new JButton("szukaj wersji");
+		verSearchButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AdminSearchVer.getInstance().setVisible(true);
+			}
+		});
+		lookupField.add(verSearchButton);
+		
+		JButton paintListButton = new JButton("lista kolorow");
+		paintListButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AdminPaintList.getInstance().setVisible(true);
+			}
+		});
+		lookupField.add(paintListButton);
+		
+		JButton clientListButton = new JButton("Lista klientow");
+		clientListButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AdminClientList.getInstance().setVisible(true);
+			}
+		});
+		lookupField.add(clientListButton);
+		
 		JPanel buttonField = new JPanel();
 		contentPane.add(buttonField, BorderLayout.SOUTH);
 		buttonField.setLayout(new BorderLayout(0, 0));

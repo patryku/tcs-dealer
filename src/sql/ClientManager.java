@@ -1,6 +1,7 @@
 package sql;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -24,6 +25,16 @@ public class ClientManager {
 		
 		System.out.println("Dodano klienta do bazy: (nazwa: " + nazwa + ", adres: " + adres + ", telefon: " + telefon + ", email: " + email + ")");
 		
+	}
+	
+	
+	public static ResultSet getClients() throws SQLException{
+		Connection conn = SQLUtils.getConnection();
+		String query = "SELECT * FROM klienci;";
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		System.out.println("GOT QUERY");
+		return rs;
 	}
 
 }
