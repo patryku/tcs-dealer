@@ -56,7 +56,7 @@ public class CarSearchResult extends JFrame {
 		resultTable.setModel(new DefaultTableModel(
 			new Object[res.size()][11],
 			new String[] {
-				"producent", "model", "wersja", "typ silnika", "pojemnosc", "moc", "moment obr", "nadwozie", "liczba drzwi", "lakier", "cena"
+				"producent", "model", "wersja", "typ silnika", "pojemnosc", "moc", "moment obr", "nadwozie", "liczba drzwi", "lakier", "cena od"
 			}
 		) {
 			private static final long serialVersionUID = 1L;
