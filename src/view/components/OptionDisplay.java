@@ -55,5 +55,8 @@ public class OptionDisplay extends JPanel {
 	public JCheckBox getCheckBox() {
 		return optionCheckBox;
 	}
-
+	
+	public String getOptionName() {
+		return optionName.getText();
+	}
 }

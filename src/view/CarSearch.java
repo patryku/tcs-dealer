@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -34,6 +35,9 @@ public class CarSearch extends JFrame {
 	private static final long serialVersionUID = -8957266627233713461L;
 	private JPanel contentPane;
 	private CarSearchManager manager = new CarSearchManager();
+	private JPanel optionList;
+	private Vector<JComboBox<String>> boxes = new Vector<>();
+	private Vector<JSpinner> spinners = new Vector<>();
 
 	/**
 	 * Launch the application.
@@ -128,12 +132,14 @@ public class CarSearch extends JFrame {
 		engTypes.add("dowolny");
 		engTypes.addAll(manager.getEngineTypes());
 		JComboBox<String> engineBox = new JComboBox<>(engTypes);
+		engineBox.setName("typ_silnika");
 		content.add(engineBox, "6, 4, 4, 1, left, default");
+		boxes.add(engineBox);
 		
 		JScrollPane optionPane = new JScrollPane();
 		content.add(optionPane, "16, 4, 1, 21");
 		
-		JPanel optionList = new JPanel();
+		optionList = new JPanel();
 		optionPane.setViewportView(optionList);
 		optionList.setLayout(new GridLayout(0, 2, 0, 0));
 		Vector<OptionDisplay> opts = manager.getOptions();
@@ -148,17 +154,21 @@ public class CarSearch extends JFrame {
 		content.add(lblOd, "6, 6");
 		
 		JSpinner mocOd = new JSpinner();
+		mocOd.setName("mocOd");
 		mocOd.setModel(new SpinnerNumberModel(1, 1, 2000, 1));
 		mocOd.setEditor(new JSpinner.NumberEditor(mocOd, "#"));
 		content.add(mocOd, "8, 6");
+		spinners.add(mocOd);
 		
 		JLabel lblDo = new JLabel("do");
 		content.add(lblDo, "10, 6");
 		
 		JSpinner mocDo = new JSpinner();
+		mocDo.setName("mocDo");
 		mocDo.setModel(new SpinnerNumberModel(2000, 1, 2000, 1));
 		mocDo.setEditor(new JSpinner.NumberEditor(mocDo, "#"));
 		content.add(mocDo, "12, 6");
+		spinners.add(mocDo);
 		
 		JLabel lblPojemnoscccm = new JLabel("pojemnosc (ccm):");
 		content.add(lblPojemnoscccm, "4, 8");
@@ -166,18 +176,22 @@ public class CarSearch extends JFrame {
 		JLabel lblOd_1 = new JLabel("od");
 		content.add(lblOd_1, "6, 8");
 		
-		JSpinner pojOd = new JSpinner();
-		pojOd.setModel(new SpinnerNumberModel(1, 1, 9999, 1));
-		pojOd.setEditor(new JSpinner.NumberEditor(pojOd, "#"));
-		content.add(pojOd, "8, 8");
+		JSpinner pojemnoscOd = new JSpinner();
+		pojemnoscOd.setName("pojemnoscOd");
+		pojemnoscOd.setModel(new SpinnerNumberModel(1, 1, 9999, 1));
+		pojemnoscOd.setEditor(new JSpinner.NumberEditor(pojemnoscOd, "#"));
+		content.add(pojemnoscOd, "8, 8");
+		spinners.add(pojemnoscOd);
 		
 		JLabel lblDo_1 = new JLabel("do");
 		content.add(lblDo_1, "10, 8");
 		
-		JSpinner pojDo = new JSpinner();
-		pojDo.setModel(new SpinnerNumberModel(9999, 1, 9999, 1));
-		pojDo.setEditor(new JSpinner.NumberEditor(pojDo, "#"));
-		content.add(pojDo, "12, 8");
+		JSpinner pojemnoscDo = new JSpinner();
+		pojemnoscDo.setName("pojemnoscDo");
+		pojemnoscDo.setModel(new SpinnerNumberModel(9999, 1, 9999, 1));
+		pojemnoscDo.setEditor(new JSpinner.NumberEditor(pojemnoscDo, "#"));
+		content.add(pojemnoscDo, "12, 8");
+		spinners.add(pojemnoscDo);
 		
 		JLabel lblMomentObrnm = new JLabel("moment obr (Nm):");
 		content.add(lblMomentObrnm, "4, 10");
@@ -185,18 +199,22 @@ public class CarSearch extends JFrame {
 		JLabel lblOd_2 = new JLabel("od");
 		content.add(lblOd_2, "6, 10");
 		
-		JSpinner momOd = new JSpinner();
-		momOd.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-		momOd.setEditor(new JSpinner.NumberEditor(momOd, "#"));
-		content.add(momOd, "8, 10");
+		JSpinner moment_obrOd = new JSpinner();
+		moment_obrOd.setName("moment_obrOd");
+		moment_obrOd.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+		moment_obrOd.setEditor(new JSpinner.NumberEditor(moment_obrOd, "#"));
+		content.add(moment_obrOd, "8, 10");
+		spinners.add(moment_obrOd);
 		
 		JLabel lblDo_2 = new JLabel("do");
 		content.add(lblDo_2, "10, 10");
 		
-		JSpinner momDo = new JSpinner();
-		momDo.setModel(new SpinnerNumberModel(3000, 1, 3000, 1));
-		momDo.setEditor(new JSpinner.NumberEditor(momDo, "#"));
-		content.add(momDo, "12, 10");
+		JSpinner moment_obrDo = new JSpinner();
+		moment_obrDo.setName("moment_obrDo");
+		moment_obrDo.setModel(new SpinnerNumberModel(3000, 1, 3000, 1));
+		moment_obrDo.setEditor(new JSpinner.NumberEditor(moment_obrDo, "#"));
+		content.add(moment_obrDo, "12, 10");
+		spinners.add(moment_obrDo);
 		
 		JLabel lblNadwozie = new JLabel("Nadwozie");
 		content.add(lblNadwozie, "2, 14");
@@ -208,7 +226,9 @@ public class CarSearch extends JFrame {
 		bodyTypes.add("dowolny");
 		bodyTypes.addAll(manager.getBodyTypes());
 		JComboBox<String> bodyBox = new JComboBox<>(bodyTypes);
+		bodyBox.setName("typ_nadwozia");
 		content.add(bodyBox, "6, 16, 4, 1, left, default");
+		boxes.add(bodyBox);
 		
 		JLabel lblLiczbaDrzwi = new JLabel("liczba drzwi:");
 		content.add(lblLiczbaDrzwi, "4, 18");
@@ -216,16 +236,20 @@ public class CarSearch extends JFrame {
 		JLabel lblOd_3 = new JLabel("od");
 		content.add(lblOd_3, "6, 18");
 		
-		JSpinner drzOd = new JSpinner();
-		drzOd.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-		content.add(drzOd, "8, 18");
+		JSpinner liczba_drzwiOd = new JSpinner();
+		liczba_drzwiOd.setName("liczba_drzwiOd");
+		liczba_drzwiOd.setModel(new SpinnerNumberModel(1, 1, 9, 1));
+		content.add(liczba_drzwiOd, "8, 18");
+		spinners.add(liczba_drzwiOd);
 		
 		JLabel lblDo_3 = new JLabel("do");
 		content.add(lblDo_3, "10, 18");
 		
-		JSpinner drzDo = new JSpinner();
-		drzDo.setModel(new SpinnerNumberModel(9, 1, 9, 1));
-		content.add(drzDo, "12, 18");
+		JSpinner liczba_drzwiDo = new JSpinner();
+		liczba_drzwiDo.setName("liczba_drzwiDo");
+		liczba_drzwiDo.setModel(new SpinnerNumberModel(9, 1, 9, 1));
+		content.add(liczba_drzwiDo, "12, 18");
+		spinners.add(liczba_drzwiDo);
 		
 		JLabel lblInne = new JLabel("Inne");
 		content.add(lblInne, "2, 22");
@@ -237,17 +261,21 @@ public class CarSearch extends JFrame {
 		content.add(lblOd_4, "6, 24");
 		
 		JSpinner cenaOd = new JSpinner();
+		cenaOd.setName("cenaOd");
 		cenaOd.setModel(new SpinnerNumberModel(0, 0, null, 1));
 		cenaOd.setEditor(new JSpinner.NumberEditor(cenaOd, "#"));
 		content.add(cenaOd, "8, 24");
+		spinners.add(cenaOd);
 		
 		JLabel lblDo_4 = new JLabel("do");
 		content.add(lblDo_4, "10, 24");
 		
 		JSpinner cenaDo = new JSpinner();
+		cenaDo.setName("cenaDo");
 		cenaDo.setModel(new SpinnerNumberModel(9999999, 0, 9999999, 1));
 		cenaDo.setEditor(new JSpinner.NumberEditor(cenaDo, "#"));
 		content.add(cenaDo, "12, 24");
+		spinners.add(cenaDo);
 		
 		JPanel footer = new JPanel();
 		contentPane.add(footer, BorderLayout.SOUTH);
@@ -262,7 +290,12 @@ public class CarSearch extends JFrame {
 		JButton btnSearch = new JButton("Wyszukaj");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO zbierz parametry i wyszukaj modele
+				Vector<String> vals = getValues();
+				Vector<String> opts = getSelectedOptions();
+				System.out.println();
+				CarSearchResult results = new CarSearchResult(manager.getVersions(vals, opts));
+				results.setVisible(true);
+				results.toFront();
 			}
 		});
 		GroupLayout gl_footer = new GroupLayout(footer);
@@ -287,5 +320,33 @@ public class CarSearch extends JFrame {
 		footer.setLayout(gl_footer);
 		pack();
 		toFront();
+	}
+	
+	private Vector<String> getValues() {
+		Vector<String> res = new Vector<>();
+		for(JComboBox<String> box : boxes) {
+			String val = (String) box.getSelectedItem();
+			if(!val.equals("dowolny"))
+				res.add(box.getName() + "='" + val + "'");
+		}
+		for(JSpinner s : spinners) {
+			String name = s.getName();
+			if(name.endsWith("Od")) {
+				res.add(name.substring(0, name.length()-2) + ">=" + s.getValue());
+			} else {
+				res.add(name.substring(0, name.length()-2) + "<=" + s.getValue());
+			}
+		}
+		return res;
+	}
+	
+	private Vector<String> getSelectedOptions() {
+		Vector<String> res = new Vector<>();
+		for(Component c : optionList.getComponents()) {
+			OptionDisplay d = (OptionDisplay) c;
+			if(d.getCheckBox().isSelected())
+				res.add(d.getOptionName());
+		}
+		return res;
 	}
 }
