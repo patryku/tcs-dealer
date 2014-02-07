@@ -1,6 +1,6 @@
 Projekt samochodowej sieci dealerskiej. Celem jest zapewnienie następujących funkcjonalności:
 - konfiguracja wybranego modelu przez klienta
-- wyszukiwanie wśród gotowych egzemplarzy samochodu o konkretnych własnościach
+- wyszukiwanie wśród samochodów modeli o konkretnych własnościach
 - utrzymywanie informacji o klientach, sprzedanych samochodach i wykonanych naprawach
 - administracja po stronie sieci dealerskiej: dodawanie nowych placówek, modeli, silnikow, przenoszenie samochodu do innej placówki, zmiana cen, itp.
 
@@ -27,3 +27,24 @@ Charakterystyka poszczególnych tabel:
 11. Auta_klientow - tabela sprzedanych samochodów. Zawiera takie same atrybuty jak tabela auta_na_sprzedaz (tutaj placowka oznacza punkt sprzedaży, w którym sprzedano pojazd) oraz dodatkowo numer rejestracyjny samochodu, datę i cenę zakupu, jak również klienta, który zakupił pojazd.
 12. Placowki - tabela zawierająca dane o wszystkich punktach sprzedaży i naprawy samochodów.
 13. Naprawy - historia przeprowadzonych napraw. Każda naprawa związana jest z konkretnym pojazdem klienta oraz placówką, w której była wykonywana.
+
+
+Instrukcja instalacji i uruchomienia aplikacji w systemie Linux:
+
+1. Aby aplikacja działała prawidłowo, należy w PostgreSQL stworzyć użytkownika dude z hasłem 12345, a następnie stworzyć bazę o nazwie dealer:
+	psql
+	CREATE USER dude WITH PASSWORD '12345';
+	CREATE DATABASE dealer;
+	GRANT ALL PRIVILEGES ON DATABASE dealer to dude;
+	\q
+2. Utworzyć strukturę bazy danych za pomocą polecenia: psql -U dude -d dealer < create.sql
+2a. Jeśli dalej jest problem z dostępem, należy w pliku /etc/postgresql/9.1/main/pg_hba.conf dodać linię:
+	local   all             dude                                    md5
+w następującym miejscu:
+	# "local" is for Unix domain socket connections only
+	local   all             dude                                    md5
+	local   all             all                                     peer
+3. Najprostszym sposobem kompilacji i uruchomienia aplikacji z kodu jest stworzenie w Eclipse nowego projektu Javy wskazując katalog dealer jako jego lokalizację:
+	File->New->Java Project i w location wskazujemy ścieżkę do folderu dealer z tej paczki
+4. Jeśli 2 pliki jar znajdujące się w folderze dealer/libs/ nie zostały automatycznie dołączone do projektu, należy je dodać do Java Build Path we właściwościach projektu.
+5. Projekt podzielony jest na 2 moduły: kliencki i administracyjny. Aby uruchomić moduł kliencki należy odpalić metodę main z klasy ClientView znajdującej się w pakiecie view. Aby uruchumoić moduł administracyjny należy odpalić metodę main z klasy AdminTool znajdującej się również w pakiecie view.
