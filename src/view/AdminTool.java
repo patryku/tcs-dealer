@@ -53,7 +53,7 @@ public class AdminTool extends JFrame {
 		JPanel header = new JPanel();
 		contentPane.add(header, BorderLayout.NORTH);
 		
-		JLabel toolLabel = new JLabel("ADMIN TOOL 2000");
+		JLabel toolLabel = new JLabel("ADMIN TOOL 1337");
 		toolLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
 		header.add(toolLabel);
 		

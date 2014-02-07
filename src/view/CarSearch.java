@@ -285,6 +285,7 @@ public class CarSearch extends JFrame {
 					.addGap(12))
 		);
 		footer.setLayout(gl_footer);
+		pack();
 		toFront();
 	}
 }
