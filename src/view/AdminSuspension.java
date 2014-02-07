@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -111,6 +112,7 @@ public class AdminSuspension extends JFrame {
 		buttonField.add(okButton);
 		pack();
 		toFront();
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 	
 	public static AdminSuspension getInstance(){

@@ -13,26 +13,26 @@ import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 
-import sql.ModelManager;
+import sql.ClientManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class AdminModel extends JFrame {
+public class AdminClient extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4195985122129298274L;
 	private JPanel contentPane;
-	private JTextField producentField;
-	private JTextField modelField;
-	private JTextField dateField;
+	private JTextField nameField;
+	private JTextField addressField;
+	private JTextField phoneField;
 	private JPanel buttonField;
 	private JButton cancelButton;
 	private JButton okButton;
-	private static AdminModel instance = null; 
-	private JTextField warrantyField;
+	private static AdminClient instance = null; 
+	private JTextField mailField;
 	/**
 	 * Launch the application.
 	 */
@@ -40,7 +40,7 @@ public class AdminModel extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminModel frame = getInstance();
+					AdminClient frame = getInstance();
 					frame.setVisible(true);
 					frame.toFront();
 				} catch (Exception e) {
@@ -53,8 +53,8 @@ public class AdminModel extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	private AdminModel() {
-		setTitle("Dodaj nowy model");
+	private AdminClient() {
+		setTitle("Dodaj nowego klienta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -65,37 +65,37 @@ public class AdminModel extends JFrame {
 		JPanel header = new JPanel();
 		contentPane.add(header, BorderLayout.NORTH);
 		
-		JLabel newModel = new JLabel("Dodaj nowy model");
-		newModel.setFont(new Font("Dialog", Font.PLAIN, 20));
-		header.add(newModel);
+		JLabel newClient = new JLabel("Dodaj nowego klienta");
+		newClient.setFont(new Font("Dialog", Font.PLAIN, 20));
+		header.add(newClient);
 		
 		JPanel body = new JPanel();
 		contentPane.add(body, BorderLayout.CENTER);
 		body.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		producentField = new JTextField();
-		producentField.setText("producent");
-		producentField.setToolTipText("Nazwa producenta");
-		body.add(producentField);
-		producentField.setColumns(15);
+		nameField = new JTextField();
+		nameField.setText("nazwa klienta");
+		nameField.setToolTipText("Nazwa Klienta");
+		body.add(nameField);
+		nameField.setColumns(15);
 		
-		modelField = new JTextField();
-		modelField.setText("model");
-		modelField.setToolTipText("Nazwa modelu");
-		body.add(modelField);
-		modelField.setColumns(15);
+		addressField = new JTextField();
+		addressField.setText("adres");
+		addressField.setToolTipText("Adres klienta");
+		body.add(addressField);
+		addressField.setColumns(10);
 		
-		dateField = new JTextField();
-		dateField.setText("yyyy-mm-dd");
-		dateField.setToolTipText("Poczatek produkcji");
-		body.add(dateField);
-		dateField.setColumns(10);
+		phoneField = new JTextField();
+		phoneField.setText("telefon");
+		phoneField.setToolTipText("Telefon do klienta");
+		body.add(phoneField);
+		phoneField.setColumns(8);
 		
-		warrantyField = new JTextField();
-		warrantyField.setToolTipText("Lata gwarancji");
-		warrantyField.setText("gwarancja");
-		body.add(warrantyField);
-		warrantyField.setColumns(4);
+		mailField = new JTextField();
+		mailField.setToolTipText("Adres email klienta");
+		mailField.setText("email");
+		body.add(mailField);
+		mailField.setColumns(10);
 		
 		buttonField = new JPanel();
 		contentPane.add(buttonField, BorderLayout.SOUTH);
@@ -114,10 +114,10 @@ public class AdminModel extends JFrame {
 		okButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String s1 = producentField.getText(), s2 = modelField.getText(), s3 = dateField.getText(), s4 = warrantyField.getText();
+				String s1 = nameField.getText(), s2 = addressField.getText(), s3 = phoneField.getText(), s4 = mailField.getText();
 				
 				try {
-					ModelManager.addModel(s1, s2, s3, s4);
+					ClientManager.addClient(s1, s2, s3, s4);
 				} catch (SQLException e) {
 					System.out.println(e);
 				}
@@ -130,9 +130,9 @@ public class AdminModel extends JFrame {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 	
-	public static AdminModel getInstance(){
+	public static AdminClient getInstance(){
 		if(instance == null)
-			instance = new AdminModel();
+			instance = new AdminClient();
 		return instance;
 	}
 
