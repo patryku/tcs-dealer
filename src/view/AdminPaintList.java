@@ -60,7 +60,7 @@ public class AdminPaintList extends JFrame {
 		resultArea.setColumns(20);
 		
 		panel.add(resultArea);
-		
+		resultArea.setText("Lista kolorow:\n");
 		try{
 			ResultSet rs = PaintManager.getPaints();
 			int num = 1;
