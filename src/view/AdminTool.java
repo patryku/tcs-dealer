@@ -160,9 +160,6 @@ public class AdminTool extends JFrame {
 		});
 		panel_2.add(addCarButton);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		panel_2.add(btnNewButton_1);
-		
 		JPanel lookupField = new JPanel();
 		body.add(lookupField);
 		
@@ -205,6 +202,20 @@ public class AdminTool extends JFrame {
 			}
 		});
 		lookupField.add(clientListButton);
+		
+		JPanel buyCarField = new JPanel();
+		body.add(buyCarField);
+		
+		JButton buyACarButton = new JButton("Kupno samochodu");
+		buyACarButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				BuyACar.getInstance().setVisible(true);
+				
+			}
+		});
+		buyCarField.add(buyACarButton);
 		
 		JPanel buttonField = new JPanel();
 		contentPane.add(buttonField, BorderLayout.SOUTH);
