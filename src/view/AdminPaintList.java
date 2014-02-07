@@ -55,7 +55,7 @@ public class AdminPaintList extends JFrame {
 		contentPane.add(panel, BorderLayout.NORTH);
 		
 		resultArea = new JTextArea();
-		resultArea.setEnabled(false);
+		resultArea.setEditable(false);
 		resultArea.setRows(20);
 		resultArea.setColumns(20);
 		
