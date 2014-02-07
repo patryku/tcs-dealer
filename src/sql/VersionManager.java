@@ -1,6 +1,7 @@
 package sql;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -31,6 +32,27 @@ public class VersionManager {
 			return;
 		}
 		System.out.println("Dodano wersje samochodu " + s1 + " marki " + s2);
+	}
+	
+	public static ResultSet searchVersion(String prod, String model, String wersja) throws SQLException{
+		Connection conn = SQLUtils.getConnection();
+		String query = "SELECT * FROM wersje_view ";
+		if(prod.length() > 0 || model.length() > 0 || wersja.length() > 0){
+			query += "WHERE ";
+			if(prod.length() > 0){
+				query += "producent = " + apos(prod) + " ";
+			}
+			if(model.length() > 0){
+				query += "model = " + apos(model) + " ";
+			}
+			if(wersja.length() > 0){
+				query += "wersja = " + apos(wersja);
+			}
+		}
+		query += ";";
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		return rs;
 	}
 
 }

@@ -1,6 +1,7 @@
 package sql;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -24,6 +25,14 @@ public class PaintManager {
 		
 		System.out.println("Dodano lakier do bazy: (typ: " + typ + ", kolor: " + kolor + ")");
 		
+	}
+	
+	public static ResultSet getPaints() throws SQLException{
+		Connection conn = SQLUtils.getConnection();
+		String query = "SELECT * FROM kolory_view;";
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		return rs;
 	}
 
 }
