@@ -68,7 +68,7 @@ public class AdminAvailCarList extends JFrame {
 			ResultSet rs = BuyACarManager.getCars();
 			while(rs.next()){
 				dialogArea.append(rs.getString("vin") + " " + rs.getString("rok_produkcji") + " " + rs.getString("producent") + " "
-					+ rs.getString("model") + "  " + rs.getString("placowka") + "\n");
+					+ rs.getString("model") + "   numer_placowki: " + rs.getString("placowka") + "\n");
 			}
 		}catch(SQLException e){
 			dialogArea.append("Nie nawiazano polaczenia z baza");
