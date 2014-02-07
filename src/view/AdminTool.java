@@ -64,7 +64,7 @@ public class AdminTool extends JFrame {
 		JPanel panel = new JPanel();
 		body.add(panel);
 		
-		JButton addClientButton = new JButton("nowy klient");
+		JButton addClientButton = new JButton("Nowy klient");
 		addClientButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -74,7 +74,7 @@ public class AdminTool extends JFrame {
 		});
 		panel.add(addClientButton);
 		
-		JButton addPostButton = new JButton("nowa placowka");
+		JButton addPostButton = new JButton("Nowa placowka");
 		addPostButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -84,7 +84,7 @@ public class AdminTool extends JFrame {
 		});
 		panel.add(addPostButton);
 		
-		JButton addRepairButton = new JButton("nowa naprawa");
+		JButton addRepairButton = new JButton("Nowa naprawa");
 		addRepairButton.addActionListener(new ActionListener() {
 	
 			@Override
@@ -97,7 +97,7 @@ public class AdminTool extends JFrame {
 		JPanel panel_1 = new JPanel();
 		body.add(panel_1);
 		
-		JButton addModelButton = new JButton("nowy model");
+		JButton addModelButton = new JButton("Nowy model");
 		addModelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -107,7 +107,7 @@ public class AdminTool extends JFrame {
 		});
 		panel_1.add(addModelButton);
 		
-		JButton addSuspButton = new JButton("nowe zawieszenie");
+		JButton addSuspButton = new JButton("Nowe zawieszenie");
 		addSuspButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -117,7 +117,7 @@ public class AdminTool extends JFrame {
 		});
 		panel_1.add(addSuspButton);
 		
-		JButton addEngineButton = new JButton("nowy silnik");
+		JButton addEngineButton = new JButton("Nowy silnik");
 		addEngineButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -127,7 +127,7 @@ public class AdminTool extends JFrame {
 		});
 		panel_1.add(addEngineButton);
 		
-		JButton addPaintButton = new JButton("nowy kolor");
+		JButton addPaintButton = new JButton("Nowy kolor");
 		addPaintButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -140,7 +140,7 @@ public class AdminTool extends JFrame {
 		JPanel panel_2 = new JPanel();
 		body.add(panel_2);
 		
-		JButton addVerButton = new JButton("nowa wersja");
+		JButton addVerButton = new JButton("Nowa wersja");
 		addVerButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -150,7 +150,7 @@ public class AdminTool extends JFrame {
 		});
 		panel_2.add(addVerButton);
 		
-		JButton addCarButton = new JButton("dodaj samochod");
+		JButton addCarButton = new JButton("Dodaj samochod");
 		addCarButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -158,12 +158,22 @@ public class AdminTool extends JFrame {
 				AdminAddCar.getInstance().setVisible(true);
 			}
 		});
+		
+		JButton btnNewButton_1 = new JButton("Utworz dodatek");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AdminWypos.getInstance().setVisible(true);
+			}
+		});
+		panel_2.add(btnNewButton_1);
 		panel_2.add(addCarButton);
 		
 		JPanel lookupField = new JPanel();
 		body.add(lookupField);
 		
-		JButton postListButton = new JButton("lista placowek");
+		JButton postListButton = new JButton("Lista placowek");
 		postListButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -173,7 +183,7 @@ public class AdminTool extends JFrame {
 		});
 		lookupField.add(postListButton);
 		
-		JButton verSearchButton = new JButton("szukaj wersji");
+		JButton verSearchButton = new JButton("Szukaj wersji");
 		verSearchButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -183,7 +193,7 @@ public class AdminTool extends JFrame {
 		});
 		lookupField.add(verSearchButton);
 		
-		JButton paintListButton = new JButton("lista kolorow");
+		JButton paintListButton = new JButton("Lista kolorow");
 		paintListButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -211,11 +221,31 @@ public class AdminTool extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				BuyACar.getInstance().setVisible(true);
+				AdminBuyACar.getInstance().setVisible(true);
 				
 			}
 		});
+		
+		JButton carlistButton = new JButton("Lista samochodow");
+		carlistButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AdminAvailCarList.getInstance().setVisible(true);
+			}
+		});
+		buyCarField.add(carlistButton);
 		buyCarField.add(buyACarButton);
+		
+		JButton configButton = new JButton("Dodaj akcesorium");
+		configButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AdminConfig.getInstance().setVisible(true);
+			}
+		});
+		buyCarField.add(configButton);
 		
 		JPanel buttonField = new JPanel();
 		contentPane.add(buttonField, BorderLayout.SOUTH);
@@ -230,6 +260,16 @@ public class AdminTool extends JFrame {
 			}
 		});
 		buttonField.add(okButton, BorderLayout.EAST);
+		
+		JButton btnKonsolaDoRecznych = new JButton("Konsola do recznych zapytan do bazy");
+		btnKonsolaDoRecznych.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AdminRaw.getInstance().setVisible(true);
+			}
+		});
+		buttonField.add(btnKonsolaDoRecznych, BorderLayout.WEST);
 		pack();
 		toFront();
 	}

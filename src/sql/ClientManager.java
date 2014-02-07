@@ -33,7 +33,6 @@ public class ClientManager {
 		String query = "SELECT * FROM klienci;";
 		Statement st = conn.createStatement();
 		ResultSet rs = st.executeQuery(query);
-		System.out.println("GOT QUERY");
 		return rs;
 	}
 

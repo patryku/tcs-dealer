@@ -5,39 +5,32 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.WindowConstants;
-
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+
+import sql.ConfigManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.JButton;
-
-import sql.BuyACarManager;
-
-public class BuyACar extends JFrame {
+public class AdminConfig extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3000881260757202233L;
+	private static final long serialVersionUID = 4195985122129298274L;
 	private JPanel contentPane;
-	private static BuyACar instance = null;
 	private JTextField vinField;
-	private JTextField priceField;
-	private JTextField registerField;
-	private JPanel header;
-	private JLabel buyacarLabel;
-	private JTextField dateField;
 	private JPanel buttonField;
 	private JButton cancelButton;
 	private JButton okButton;
-	private JTextField clientField;
+	private static AdminConfig instance = null; 
+	private JTextField addonField;
 	/**
 	 * Launch the application.
 	 */
@@ -45,7 +38,7 @@ public class BuyACar extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuyACar frame = new BuyACar();
+					AdminConfig frame = getInstance();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,8 +50,8 @@ public class BuyACar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	private BuyACar() {
-		setTitle("Kupno samochodu");
+	private AdminConfig() {
+		setTitle("Dodaj nowe akcesorium");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -66,69 +59,50 @@ public class BuyACar extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		header = new JPanel();
+		JPanel header = new JPanel();
 		contentPane.add(header, BorderLayout.NORTH);
 		
-		buyacarLabel = new JLabel("Kupno samochodu");
-		buyacarLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
-		header.add(buyacarLabel);
+		JLabel newConfig = new JLabel("Dodaj nowe akcesorium");
+		newConfig.setFont(new Font("Dialog", Font.PLAIN, 20));
+		header.add(newConfig);
 		
 		JPanel body = new JPanel();
 		contentPane.add(body, BorderLayout.CENTER);
-		body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
+		body.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		vinField = new JTextField();
-		vinField.setToolTipText("Numer windykacyjny samochodu");
 		vinField.setText("nr windykacyjny");
+		vinField.setToolTipText("Numer windykacyny samochodu");
 		body.add(vinField);
 		vinField.setColumns(15);
 		
-		registerField = new JTextField();
-		registerField.setToolTipText("Numer rejestracyjny samochodu");
-		registerField.setText("nr rejestracji");
-		body.add(registerField);
-		registerField.setColumns(15);
-		
-		clientField = new JTextField();
-		clientField.setToolTipText("Numer klienta kupujacego");
-		clientField.setText("numer klienta");
-		body.add(clientField);
-		clientField.setColumns(15);
-		
-		priceField = new JTextField();
-		priceField.setToolTipText("Cena sprzedazy");
-		priceField.setText("cena");
-		body.add(priceField);
-		priceField.setColumns(15);
-		
-		dateField = new JTextField();
-		dateField.setToolTipText("Data zakupu");
-		dateField.setText("data");
-		body.add(dateField);
-		dateField.setColumns(15);
+		addonField = new JTextField();
+		addonField.setToolTipText("Akcesorium");
+		addonField.setText("dodatek");
+		body.add(addonField);
+		addonField.setColumns(10);
 		
 		buttonField = new JPanel();
 		contentPane.add(buttonField, BorderLayout.SOUTH);
+		buttonField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				
 			}
 		});
 		buttonField.add(cancelButton);
 		
 		okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String s1 = vinField.getText(), s2 = registerField.getText(), s3 = dateField.getText(), s4 = priceField.getText(), s5 = clientField.getText();
+				String s1 = vinField.getText(), s2 = addonField.getText();
+				
 				try {
-					BuyACarManager.perform(s1, s2, s3, s4, s5);
+					ConfigManager.addConfig(s1, s2);
 				} catch (SQLException e) {
 					System.out.println(e);
 				}
@@ -141,10 +115,10 @@ public class BuyACar extends JFrame {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 	
-	public static BuyACar getInstance(){
+	public static AdminConfig getInstance(){
 		if(instance == null)
-			instance = new BuyACar();
+			instance = new AdminConfig();
 		return instance;
 	}
-	
+
 }

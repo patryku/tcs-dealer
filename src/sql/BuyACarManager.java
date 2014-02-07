@@ -42,5 +42,14 @@ public class BuyACarManager {
 			return;
 		}
 	}
+	
+	
+	public static ResultSet getCars() throws SQLException{
+		Connection conn = SQLUtils.getConnection();
+		String query = "SELECT * FROM auta_na_sprzedaz a join wersje_view w on a.wersja = w.id order by placowka;";
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		return rs;
+	}
 
 }
